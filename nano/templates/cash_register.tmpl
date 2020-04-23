@@ -1,0 +1,66 @@
+<!-- 
+	Interface for cash register (NSC Janus)
+	See: code/modules/economy/cash_register.dm
+-->
+
+<h2>{{:data.title}}</h2>
+<center><h3>{{:data.text}}</h3></center>
+{{:helper.link('Shutdown', 'power', { 'option' : 'shutdown' })}}
+{{if data.hasscanner == 1}}
+{{:helper.link('Take scanner', 'power', { 'option' : 'takescanner' })}}
+{{/if}}
+{{if data.mode == 1}} <!-- General screen -->
+<div class='item'>
+	{{if data.hasshop == 0}}
+	{{:helper.link('Create shop', 'power', { 'option' : 'newshop' })}}
+	{{else}}
+	{{:helper.link('Prices', 'power', { 'option' : 'togglePricesList' })}}
+	{{:helper.link('Scanned items', 'power', { 'option' : 'toggleScannedList' })}}
+	{{/if}}
+</div>
+{{else data.mode == 2}} <!-- Items with prices list screen -->
+<div class='item'>
+	{{:helper.link('Go back', 'power', { 'option' : 'toggleCashRegister' })}}
+	<table style="width:100%">
+	{{for data.products}}
+		<tr class="candystripe">
+		<td>{{:index}}
+		<td>{{:value.name}}
+		<td>T{{:value.price}}
+		{{:helper.link('Remove', 'power', { 'removeFromPrices' : value.item })}}
+	{{empty}}
+		<tr class="candystripe">
+		<td>No objects with prices.
+	{{/for}}
+	</table>
+</div>
+{{else data.mode == 3}} <!-- Items scanned list screen -->
+<div class='item'>
+	{{:helper.link('Go back', 'power', { 'option' : 'toggleCashRegister' })}}
+	<table style="width:100%">
+	{{for data.products}}
+		<tr class="candystripe">
+		<td>{{:value.name}} 
+		<td>T{{:value.price}}
+		{{:helper.link('Remove', 'power', { 'removeFromTransaction' : value.item })}}
+	{{empty}}
+		<tr class="candystripe">
+		<td>Nothing scanned.
+	{{/for}}
+	</table>
+	<div class='item'>
+		{{:helper.link('Print receipt', 'power', { 'option' : 'printReceipt' })}}
+		{{:helper.link('Objects paid', 'power', { 'option' : 'objectsPaid' })}}
+	</div>
+</div>
+{{else data.mode == 4}} <!-- Settings screen -->
+<div class='item'>
+	{{:helper.link('Clean inventory', 'power', { 'option' : 'cleanInventoryQuestion' })}}
+</div>
+{{else data.mode == 5}} <!-- Settings screen -->
+<div class='item'>
+	<h3>Are you sure? This will remove all scanned items in this shop.</h3>
+	{{:helper.link('Confirm', 'power', { 'option' : 'cleanInventoryConfirm' })}}
+	{{:helper.link('Cancel', 'power', { 'option' : 'toggleSettings' })}}
+</div>
+{{/if}}
