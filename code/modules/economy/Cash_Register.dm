@@ -166,14 +166,15 @@
 			examine(user)
 		if("open_cash_register")
 			src.add_fingerprint(user)
-			..()
+			return ..()
 		if("open_cash_storage")
 			src.add_fingerprint(user)
 			mode = 6
-			..()
+			return ..()
 		if("turn_off")
+			src.add_fingerprint(user)
 			mode = 0
-			ui_interact(user)
+			return ..()
 		if("point")
 			// Add point emote
 			user.visible_message("[user] points to the cash register.", "You point to the cash register", null)

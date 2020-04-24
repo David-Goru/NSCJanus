@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(object_menus)
 
 /obj/screen/menu/center/MouseExited(location, control, params)
 	. = ..()
-	icon_state = "menu_menu_center"
+	icon_state = "menu_center"
 
 /obj/screen/menu/center/Click(location, control, params)
 	if(usr.client == parent.current_user)
