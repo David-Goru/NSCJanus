@@ -10,6 +10,7 @@ var/shop_areas_list = list()
 
 /area/shop
 	var/id
+	var/institution_name = "Default institution name"
 	var/datum/access/shop/shop_access = null
 	var/list/items_prices = list()
 	var/item_id_counter = 0

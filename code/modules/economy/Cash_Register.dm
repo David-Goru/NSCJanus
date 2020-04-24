@@ -9,7 +9,6 @@
 	idle_power_usage = 10 // To be changed
 	active_power_usage = 20 // To be changed
 	power_channel = EQUIP
-	//req_access = list(list(access_x, access_y))
 	//layer = ABOVE_WINDOW_LAYER
 	clicksound = "button"
 	clickvol = 30
@@ -24,8 +23,11 @@
 	var/obj/item/weapon/cashregisterscanner/linked/scanner // Cash register's scanner
 	var/mode = 1 // 0 for close screen, 1 for general screen, 2 for items with prices list screen, 3 for items scanned list screen
 	var/area/shop/shop_area = null
+	var/datum/money_account/linked_account = null
+	var/password = null
 
-	//wires = /datum/wires/cashregister
+	var/list/thalers // Cash stored at the cash register
+
 
 // Initialize cash register
 /obj/machinery/cashregister/Initialize()
@@ -33,6 +35,19 @@
 
 	// Create and attach scanner
 	scanner = new(src, src)
+
+	// Set cash list
+	var/item/thaler/A = new(1)
+	var/item/thaler/B = new(10)
+	var/item/thaler/C = new(20)
+	var/item/thaler/D = new(50)
+	var/item/thaler/E = new(100)
+	var/item/thaler/F = new(200)
+	var/item/thaler/G = new(500)
+	var/item/thaler/H = new(1000)
+
+	thalers = list(A,B,C,D,E,F,G,H)
+
 
 	update_icon()
 
@@ -99,6 +114,29 @@
 			if(s.id == shop_id)
 				shop_area = s
 				to_chat(user, "Cash register linked to shop with ID [shop_id]")
+	else if(istype(W, /obj/item/weapon/card))
+		if(transaction_total > 0)
+			var/obj/item/weapon/card/id/idcard = W
+			var/datum/money_account/D = get_account(idcard.associated_account_number)
+			if(D)
+				if(D.money >= transaction_total)
+					D.withdraw(transaction_total, "Purchase at [shop_area.institution_name]", shop_area.institution_name)
+					for(var/item/itemtemplate/I in transaction_items)
+						shop_area.items_prices.Remove(I)
+					transaction_items = list()
+					transaction_total = 0
+				else
+					to_chat(user, "Not enough money.")
+			else
+				to_chat(user, "Error. No account found.")
+		else
+			to_chat(user, "It seems like there's nothing to pay for.")
+	else if(istype(W, /obj/item/weapon/spacecash))
+		var/obj/item/weapon/spacecash/thaler = W
+		if(user.unEquip(thaler, src))
+			for(var/item/thaler/t in thalers)
+				if(t.value == thaler.worth)
+					t.amount++
 	else
 		return ..()
 
@@ -108,6 +146,14 @@
 	var/name
 	var/price
 	var/item_id
+
+// Cash object
+/item/thaler
+	var/value
+	var/amount = 0
+
+/item/thaler/New(var/val)
+	value = val
 
 // Check if user opens UI
 /obj/machinery/cashregister/interface_interact(mob/user)
@@ -124,11 +170,17 @@
 
 	// Mode and title
 	data["mode"] = mode
-	data["title"] = "Mercadona"
-	if (scanner.loc == src)
+	data["title"] = "Cash register"
+	data["text"] = ""
+	if(scanner.loc == src)
 		data["hasscanner"] = 1
 	else
 		data["hasscanner"] = 0
+
+	if(linked_account == null)
+		data["hasaccount"] = 0
+	else
+		data["hasaccount"] = 1
 
 	if(mode == 0) // Close computer
 		is_powered = 0
@@ -160,6 +212,13 @@
 			products[++products.len] = list("name" = I.name, "price" = I.price, "item" = I.item_id)
 
 		data["products"] = products
+	else if(mode == 4)
+		data["text"] = "Settings"
+	else if(mode == 5)
+		data["text"] = "Clean prices list confirmation"
+	else if(mode == 6)
+		data["text"] = "Cash"
+		data["thalers"] = thalers
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -180,6 +239,19 @@
 			mode = 4
 		else if (href_list["option"] == "cleanInventoryQuestion")
 			mode = 5
+		else if (href_list["option"] == "setAccount")
+			var/account = input(user, "Set account", "Account number")
+			var/datum/money_account/D
+			D = get_account(account)
+
+			if(D)
+				var/pin = input(user, "Set pin", "Pin")
+				if(pin == D.remote_access_pin)
+					linked_account = D
+				else
+					to_chat(user, "Error: incorrect pin.")
+			else
+				to_chat(user, "Error: account not found.")
 		else if (href_list["option"] == "cleanInventoryConfirm")
 			for(var/item/itemtemplate/I in shop_area.items_prices)
 				shop_area.items_prices.Remove(I)
@@ -216,6 +288,12 @@
 		for(var/item/itemtemplate/I in transaction_items)
 			if(I.item_id == remove_item_id)
 				transaction_items.Remove(I)
+	else if(href_list["takeCash"])
+		var/thaler_value = href_list["takeCash"]
+		for(var/item/thaler/T in thalers)
+			if(T.value == thaler_value)
+				T.amount--
+				spawn_money(thaler_value,src.loc,user)
 
 	return TOPIC_REFRESH
 
