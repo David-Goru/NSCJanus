@@ -12,6 +12,11 @@
 		/////////
 		//OTHER//
 		/////////
+	var/datum/tooltip/tooltips 	= null
+
+		/////////
+		//OTHER//
+		/////////
 	var/datum/preferences/prefs = null
 	var/adminobs		= null
 

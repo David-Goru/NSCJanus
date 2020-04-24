@@ -19,6 +19,7 @@
 	{{else}}
 	{{:helper.link('Prices', null, { 'option' : 'togglePricesList' })}}
 	{{:helper.link('Scanned items', null, { 'option' : 'toggleScannedList' })}}
+	{{:helper.link('Cash', null, { 'option' : 'toggleCash' })}}
 	{{/if}}
 </div>
 {{else data.mode == 2}} <!-- Items with prices list screen -->
@@ -68,6 +69,9 @@
 	{{:helper.link('Cancel', null, { 'option' : 'toggleSettings' })}}
 </div>
 {{else data.mode == 6}} <!-- Cash screen -->
+<div class='item'>
+	{{:helper.link('Go back', null, { 'option' : 'toggleCashRegister' })}}
+</div>
 {{for data.thalers}}
 <div class='item'>
 {{:helper.link(value.value + 'T', null, { 'takeCash' : value.value}, value.amount > 0 ? null : 'disabled')}}

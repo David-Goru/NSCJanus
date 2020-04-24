@@ -21,12 +21,20 @@
 	var/list/transaction_items = list() // To store items information (price, name, item...)
 	var/access_code = 0 // For changing account or locking the cash register
 	var/obj/item/weapon/cashregisterscanner/linked/scanner // Cash register's scanner
-	var/mode = 1 // 0 for close screen, 1 for general screen, 2 for items with prices list screen, 3 for items scanned list screen
+	var/mode = 1 // 0 for close screen, 1 for general screen, 2 for items with prices list screen, 3 for items scanned list screen, 4 for settings, 5 for confirmations, 6 for cash storage
 	var/area/shop/shop_area = null
 	var/datum/money_account/linked_account = null
 	var/password = null
 
 	var/list/thalers // Cash stored at the cash register
+
+	// Pretty UI
+	var/static/button_examine = image(icon = 'icons/buttons.dmi', icon_state = "button_examine")
+	var/static/button_open_cash_register = image(icon = 'icons/buttons.dmi', icon_state = "button_use")
+	var/static/button_open_cash_storage = image(icon = 'icons/buttons.dmi', icon_state = "button_cash")
+	var/static/button_turn_off = image(icon = 'icons/buttons.dmi', icon_state = "button_turn_off")
+	var/static/button_point = image(icon = 'icons/buttons.dmi', icon_state = "button_point")
+	var/static/button_look_at = image(icon = 'icons/buttons.dmi', icon_state = "button_look_at")
 
 
 // Initialize cash register
@@ -140,6 +148,38 @@
 	else
 		return ..()
 
+// When cash storage is clicked (for UI)
+/obj/machinery/cashregister/attack_hand(mob/user)
+	// Define the buttons
+	var/list/options = list()
+	options["examine"] = button_examine
+	options["open_cash_register"] = button_open_cash_register
+	options["open_cash_storage"] = button_open_cash_storage
+	options["turn_off"] = button_turn_off
+	options["point"] = button_point
+	options["look_at"] = button_look_at
+
+	var/choice = show_object_menu(user, src, options, require_near = !issilicon(user))
+
+	switch(choice)
+		if ("examine")
+			examine(user)
+		if("open_cash_register")
+			src.add_fingerprint(user)
+			..()
+		if("open_cash_storage")
+			src.add_fingerprint(user)
+			mode = 6
+			..()
+		if("turn_off")
+			mode = 0
+			ui_interact(user)
+		if("point")
+			// Add point emote
+			user.visible_message("[user] points to the cash register.", "You point to the cash register", null)
+		if("look_at")
+			user.visible_message("[user] stares at the cash register.", "You stare at the cash register", null)
+
 // Item object for the items list
 /item/itemtemplate
 	var/obj/item/item
@@ -183,6 +223,7 @@
 		data["hasaccount"] = 1
 
 	if(mode == 0) // Close computer
+		src.add_fingerprint(user)
 		is_powered = 0
 		on_update_icon()
 		ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -239,6 +280,8 @@
 			mode = 4
 		else if (href_list["option"] == "cleanInventoryQuestion")
 			mode = 5
+		else if (href_list["option"] == "toggleCash")
+			mode = 6
 		else if (href_list["option"] == "setAccount")
 			var/account = input(user, "Set account", "Account number")
 			var/datum/money_account/D
@@ -386,9 +429,9 @@
 	return ..()
 
 // Check if scanner can be used
-/obj/item/weapon/cashregisterscanner/proc/can_use(mob/user, mob/M)
-	// Should check if cash register is working and has alarm code
-
+/obj/item/weapon/cashregisterscanner/linked/proc/can_use(mob/user, mob/M)
+	if(base_unit.shop_area == null)
+		return 0
 	return 1
 
 // Check if object can be scanned
