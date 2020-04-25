@@ -5,6 +5,12 @@
 	icon_state = "plating"
 	layer = PLATING_LAYER
 
+/turf/simulated/floor/business_area_plating
+	name = "business_area_plating"
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_state = "plating_business"
+	layer = PLATING_LAYER
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -273,7 +279,7 @@
 	name = "floor"
 	icon_state = "techfloor_grid"
 	initial_flooring = /decl/flooring/tiling/tech/grid
-	
+
 /turf/simulated/floor/tiled/skrell
 	icon = 'icons/turf/skrellturf.dmi'
 	icon_state = "skrellblack"
