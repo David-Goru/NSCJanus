@@ -3,28 +3,28 @@
 	See: code/modules/economy/cash_register.dm
 -->
 
-<h2>{{:data.title}}</h2>
+{{if data.hasshop == 0}}
+	<div class="notice" style="height: 22px">
+		<span class='bad'>Needs to be linked to a shop area.</span>
+	</div>
+{{/if}}
+{{if data.hasaccount == 0}}
+	<div class="notice" style="height: 22px">
+		<span class='bad'>Account not linked to cash register.</span>
+	</div>
+{{/if}}
 <center><h3>{{:data.text}}</h3></center>
-{{:helper.link('Shutdown', 'power', { 'option' : 'shutdown' })}}
-{{if data.hasscanner == 1}}
-{{:helper.link('Take scanner', null, { 'option' : 'takescanner' })}}
-{{/if}}
-{{if data.mode != 4}}
-{{:helper.link('Settings', null, { 'option' : 'toggleSettings' })}}
-{{/if}}
 {{if data.mode == 1}} <!-- General screen -->
 <div class='item'>
-	{{if data.hasshop == 0}}
-	<h2>Cash register needs to be linked a shop institution.</h2>
-	{{else}}
-	{{:helper.link('Prices', null, { 'option' : 'togglePricesList' })}}
-	{{:helper.link('Scanned items', null, { 'option' : 'toggleScannedList' })}}
-	{{:helper.link('Cash', null, { 'option' : 'toggleCash' })}}
+	{{if data.hasshop == 1}}
+	{{:helper.link('Inventory', null, { 'option' : 'togglePricesList' }, data.hasshop ? null : 'disabled')}}
+	{{:helper.link('Check-out', null, { 'option' : 'toggleScannedList' }, data.hasshop ? null : 'disabled')}}
 	{{/if}}
+	{{:helper.link('Access cash drawer', null, { 'option' : 'toggleCash' })}}
+	{{:helper.link('View transactions', null, { 'option' : 'toggleTransactions' }, data.hasshop ? null : 'disabled')}}
 </div>
-{{else data.mode == 2}} <!-- Items with prices list screen -->
+{{else data.mode == 2}} <!-- Inventory screen -->
 <div class='item'>
-	{{:helper.link('Go back', null, { 'option' : 'toggleCashRegister' })}}
 	<table style="width:100%">
 	{{for data.products}}
 		<tr class="candystripe">
@@ -38,9 +38,8 @@
 	{{/for}}
 	</table>
 </div>
-{{else data.mode == 3}} <!-- Items scanned list screen -->
+{{else data.mode == 3}} <!-- Check-out screen -->
 <div class='item'>
-	{{:helper.link('Go back', null, { 'option' : 'toggleCashRegister' })}}
 	<table style="width:100%">
 	{{for data.products}}
 		<tr class="candystripe">
@@ -54,29 +53,52 @@
 	</table>
 	<div class='item'>
 		{{:helper.link('Print receipt', null, { 'option' : 'printReceipt' })}}
-		{{:helper.link('Objects paid', null, { 'option' : 'objectsPaid' })}}
+		{{:helper.link('Objects paid', null, { 'option' : 'objectsPaid' }, data.has_products > 0 ? null : 'disabled')}}
+		{{:helper.link('Access cash drawer', null, { 'option' : 'toggleCash' })}}
+		{{:helper.link('Delete all', null, { 'option' : 'deleteCheckOut' })}}
 	</div>
 </div>
 {{else data.mode == 4}} <!-- Settings screen -->
 <div class='item'>
-	{{:helper.link('Clean inventory', null, { 'option' : 'cleanInventoryQuestion' })}}
+	{{if data.hasshop == 0}}
+		{{:helper.link('Clear all inventory', null, { 'option' : 'clearInventoryQuestion' })}}
+	{{/if}}
 	{{:helper.link('Set account', null, { 'option' : 'setAccount' })}}
+	{{:helper.link('Link POS', null, { 'option' : 'setPOS' })}}
+	{{:helper.link('Set tags', null, { 'option' : 'setTags' }, 'disabled')}}
 </div>
-{{else data.mode == 5}} <!-- Settings screen -->
+{{else data.mode == 5}} <!-- Clear inventory confirmation -->
 <div class='item'>
 	<h3>Are you sure? This will remove all scanned items in this shop.</h3>
-	{{:helper.link('Confirm', null, { 'option' : 'cleanInventoryConfirm' })}}
+	{{:helper.link('Confirm', null, { 'option' : 'clearInventoryConfirm' })}}
 	{{:helper.link('Cancel', null, { 'option' : 'toggleSettings' })}}
 </div>
 {{else data.mode == 6}} <!-- Cash screen -->
+	<div class='item'>
+	{{for data.thalers}}
+		{{:helper.link('T' + value.worth + ' (' + value.amount + ')', null, { 'takeCash' : value.worth}, value.amount > 0 ? null : 'disabled')}}
+	{{/for}}
+	</div>
+{{else data.mode == 7}} <!-- Transactions screen -->
 <div class='item'>
-	{{:helper.link('Go back', null, { 'option' : 'toggleCashRegister' })}}
 </div>
-{{for data.thalers}}
+	<div class='item'>
+	{{for data.transactions}}
+		{{:helper.link('[' + value.name + ']', null, { 'viewTransaction' : value.id})}}
+	{{/for}}
+	</div>
+{{else data.mode == 8}} <!-- View transaction screen -->
 <div class='item'>
-{{:helper.link(value.value + 'T', null, { 'takeCash' : value.value}, value.amount > 0 ? null : 'disabled')}}
 </div>
+	<div class='item'>
+	{{for data.items}}
+		<div style="float: left">{{:value.name}}</div><div style="float: right">T{{:value.price}}</div>
+	{{/for}}
+	</div>
+	<br>
+	<div class='item'><div style="float: right">SUBTOTAL: T{{:data.subtotal}}</div></div>
+	<div class='item'><div style="float: right">TAX: {{:data.tax}}%</div></div>
+	<div class='item'><div style="float: right">TOTAL: T{{:data.total}}</div></div>
+	{{:helper.link('Print', null, { 'printTransaction' : data.transaction})}}
 {{/if}}
-{{if data.hasaccount == 0}}
-<h2>Account not linked to the cash register.</h2>
-{{/if}}
+{{:helper.link('Create area (test)', null, { 'option' : 'test'})}}

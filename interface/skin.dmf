@@ -1021,7 +1021,6 @@ window "mapwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
-		outer-size = 654x494
 	elem "map"
 		type = MAP
 		pos = 0,0
@@ -1220,8 +1219,6 @@ window "infowindow"
 		title = "Info"
 		statusbar = false
 		is-pane = true
-		outer-size = 696x454
-		inner-size = 680x415
 	elem "info"
 		type = INFO
 		pos = 0,0

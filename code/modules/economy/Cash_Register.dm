@@ -24,17 +24,19 @@
 	var/mode = 1 // 0 for close screen, 1 for general screen, 2 for items with prices list screen, 3 for items scanned list screen, 4 for settings, 5 for confirmations, 6 for cash storage
 	var/area/shop/shop_area = null
 	var/datum/money_account/linked_account = null
+	var/obj/machinery/cashregisterpos/linked_pos = null
 	var/password = null
+	var/tax = 10
+	var/selected_transaction = 0
 
-	var/list/thalers // Cash stored at the cash register
+	var/list/thalers = list() // Cash stored at the cash register
 
 	// Pretty UI
 	var/static/button_examine = image(icon = 'icons/buttons.dmi', icon_state = "button_examine")
 	var/static/button_open_cash_register = image(icon = 'icons/buttons.dmi', icon_state = "button_use")
 	var/static/button_open_cash_storage = image(icon = 'icons/buttons.dmi', icon_state = "button_cash")
-	var/static/button_turn_off = image(icon = 'icons/buttons.dmi', icon_state = "button_turn_off")
+	var/static/button_shutdown = image(icon = 'icons/buttons.dmi', icon_state = "button_shutdown")
 	var/static/button_point = image(icon = 'icons/buttons.dmi', icon_state = "button_point")
-	var/static/button_look_at = image(icon = 'icons/buttons.dmi', icon_state = "button_look_at")
 
 
 // Initialize cash register
@@ -45,16 +47,30 @@
 	scanner = new(src, src)
 
 	// Set cash list
-	var/item/thaler/A = new(1)
-	var/item/thaler/B = new(10)
-	var/item/thaler/C = new(20)
-	var/item/thaler/D = new(50)
-	var/item/thaler/E = new(100)
-	var/item/thaler/F = new(200)
-	var/item/thaler/G = new(500)
-	var/item/thaler/H = new(1000)
-
-	thalers = list(A,B,C,D,E,F,G,H)
+	var/item/thaler/A = new()
+	A.worth = 1
+	thalers += A
+	var/item/thaler/B = new()
+	B.worth = 10
+	thalers += B
+	var/item/thaler/C = new()
+	C.worth = 20
+	thalers += C
+	var/item/thaler/D = new()
+	D.worth = 50
+	thalers += D
+	var/item/thaler/E = new()
+	E.worth = 100
+	thalers += E
+	var/item/thaler/F = new()
+	F.worth = 200
+	thalers += F
+	var/item/thaler/G = new()
+	G.worth = 500
+	thalers += G
+	var/item/thaler/H = new()
+	H.worth = 1000
+	thalers += H
 
 
 	update_icon()
@@ -119,31 +135,17 @@
 	else if(isMultitool(W) && panel_state == 1)
 		var/shop_id = (input(user,"Shop ID","Set shop ID","") as null|num)
 		for(var/area/shop/s in shop_areas_list)
-			if(s.id == shop_id)
+			if("[s.id]" == "[shop_id]")
 				shop_area = s
 				to_chat(user, "Cash register linked to shop with ID [shop_id]")
+				name = "\improper Cash register - " + s.institution_name
 	else if(istype(W, /obj/item/weapon/card))
-		if(transaction_total > 0)
-			var/obj/item/weapon/card/id/idcard = W
-			var/datum/money_account/D = get_account(idcard.associated_account_number)
-			if(D)
-				if(D.money >= transaction_total)
-					D.withdraw(transaction_total, "Purchase at [shop_area.institution_name]", shop_area.institution_name)
-					for(var/item/itemtemplate/I in transaction_items)
-						shop_area.items_prices.Remove(I)
-					transaction_items = list()
-					transaction_total = 0
-				else
-					to_chat(user, "Not enough money.")
-			else
-				to_chat(user, "Error. No account found.")
-		else
-			to_chat(user, "It seems like there's nothing to pay for.")
+		pay_with_card(W, user)
 	else if(istype(W, /obj/item/weapon/spacecash))
 		var/obj/item/weapon/spacecash/thaler = W
 		if(user.unEquip(thaler, src))
 			for(var/item/thaler/t in thalers)
-				if(t.value == thaler.worth)
+				if(t.worth == thaler.worth)
 					t.amount++
 	else
 		return ..()
@@ -155,9 +157,8 @@
 	options["examine"] = button_examine
 	options["open_cash_register"] = button_open_cash_register
 	options["open_cash_storage"] = button_open_cash_storage
-	options["turn_off"] = button_turn_off
+	options["shutdown"] = button_shutdown
 	options["point"] = button_point
-	options["look_at"] = button_look_at
 
 	var/choice = show_object_menu(user, src, options, require_near = !issilicon(user))
 
@@ -171,15 +172,13 @@
 			src.add_fingerprint(user)
 			mode = 6
 			return ..()
-		if("turn_off")
+		if("shutdown")
 			src.add_fingerprint(user)
 			mode = 0
 			return ..()
 		if("point")
 			// Add point emote
-			user.visible_message("[user] points to the cash register.", "You point to the cash register", null)
-		if("look_at")
-			user.visible_message("[user] stares at the cash register.", "You stare at the cash register", null)
+			user.pointed(src)
 
 // Item object for the items list
 /item/itemtemplate
@@ -190,11 +189,16 @@
 
 // Cash object
 /item/thaler
-	var/value
+	var/worth = 0
 	var/amount = 0
 
-/item/thaler/New(var/val)
-	value = val
+// Transaction object
+/item/shop_transaction
+	var/id
+	var/total_amount
+	var/tax_applied
+	var/items = list()
+	var/name
 
 // Check if user opens UI
 /obj/machinery/cashregister/interface_interact(mob/user)
@@ -209,10 +213,17 @@
 
 	var/list/data = list()
 
+	// Header
+	data["PC_hasheader"] = 1
+	data["PC_stationtime"] = stationtime2text()
+	data["hassettings"] = 1
+	data["hasback"] = 1
+
+
 	// Mode and title
 	data["mode"] = mode
-	data["title"] = "Cash register"
 	data["text"] = ""
+
 	if(scanner.loc == src)
 		data["hasscanner"] = 1
 	else
@@ -233,13 +244,14 @@
 		mode = 1
 		return
 	else if(mode == 1) // Main screen
-		data["text"] = "Main screen of the cash register"
+		data["hasback"] = 0
+		data["text"] = "Main screen"
 		if (shop_area == null)
 			data["hasshop"] = 0
 		else
 			data["hasshop"] = 1
 	else if(mode == 2) // Prices list screen
-		data["text"] = "Prices list"
+		data["text"] = "Inventory"
 
 		var/products[0]
 		for(var/item/itemtemplate/I in shop_area.items_prices)
@@ -247,7 +259,8 @@
 
 		data["products"] = products
 	else if(mode == 3) // Scanned list screen
-		data["text"] = "Scanned items list"
+		data["text"] = "Check-out"
+		data["has_products"] = transaction_items.len
 
 		var/products[0]
 		for(var/item/itemtemplate/I in transaction_items)
@@ -260,7 +273,31 @@
 		data["text"] = "Clean prices list confirmation"
 	else if(mode == 6)
 		data["text"] = "Cash"
-		data["thalers"] = thalers
+
+		var/thalers_list[0]
+		for(var/item/thaler/T in thalers)
+			thalers_list[++thalers_list.len] = list("worth" = T.worth, "amount" = T.amount)
+		data["thalers"] = thalers_list
+	else if(mode == 7)
+		data["text"] = "Transactions"
+		var/transactions_list[0]
+		for(var/item/shop_transaction/st in shop_area.transactions_list)
+			transactions_list[++transactions_list.len] = list("name" = st.name, "id" = st.id)
+		data["transactions"] = transactions_list
+	else if(mode == 8)
+		var/item/shop_transaction/s
+		for (var/item/shop_transaction/ST in shop_area.transactions_list)
+			if("[ST.id]" == "[selected_transaction]")
+				s = ST
+		data["text"] = "Transaction [s.name]"
+		var/items_list[0]
+		for(var/item/itemtemplate/I in s.items)
+			items_list[++items_list.len] = list("name" = I.name, "price" = I.price)
+		data["items"] = items_list
+		data["subtotal"] = s.total_amount * (100 - s.tax_applied)
+		data["tax"] = s.tax_applied
+		data["total"] = s.total_amount
+		data["transaction"] = s
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -277,13 +314,29 @@
 			mode = 2
 		else if(href_list["option"] == "toggleScannedList")
 			mode = 3
-		else if (href_list["option"] == "toggleSettings")
+		else if(href_list["option"] == "toggleSettings")
 			mode = 4
-		else if (href_list["option"] == "cleanInventoryQuestion")
+		else if(href_list["option"] == "clearInventoryQuestion")
 			mode = 5
-		else if (href_list["option"] == "toggleCash")
+		else if(href_list["option"] == "toggleCash")
 			mode = 6
-		else if (href_list["option"] == "setAccount")
+		else if(href_list["option"] == "toggleTransactions")
+			mode = 7
+		else if(href_list["option"] == "toggleBack")
+			if(mode == 8)
+				mode = 7
+			else if(mode == 7)
+				mode = 1
+			else if(mode == 6)
+				if(transaction_items.len > 0)
+					mode = 3
+				else
+					mode = 1
+			else if(mode == 5)
+				mode = 4
+			else
+				mode = 1
+		else if(href_list["option"] == "setAccount")
 			var/account = input(user, "Set account", "Account number")
 			var/datum/money_account/D
 			D = get_account(account)
@@ -296,32 +349,54 @@
 					to_chat(user, "Error: incorrect pin.")
 			else
 				to_chat(user, "Error: account not found.")
-		else if (href_list["option"] == "cleanInventoryConfirm")
+		else if(href_list["option"] == "setPOS")
+			var/pos_id = (input(user, "Set POS", "POS ID") as null|num)
+
+			for (var/obj/machinery/cashregisterpos/pos in cash_register_pos_list)
+				if (pos.id == pos_id)
+					pos.cash_register = src
+					to_chat(user, "POS linked to this cash register.")
+		else if(href_list["option"] == "clearInventoryConfirm")
 			for(var/item/itemtemplate/I in shop_area.items_prices)
 				shop_area.items_prices.Remove(I)
 			mode = 3
 		else if(href_list["option"] == "printReceipt")
-			if (transaction_items.len == 0)
+			if(transaction_items.len == 0)
 				return TOPIC_HANDLED
 			to_chat(usr, "*Printing receipt...*")
 			return print_receipt()
 		else if(href_list["option"] == "objectsPaid")
-			if (transaction_items.len == 0)
+			var/item/shop_transaction/st = new()
+			st.id = ++shop_area.transactions_counter
+			st.total_amount = transaction_total
+			st.tax_applied = tax
+			st.items = transaction_items
+			var/prefix = (st.id < 10 ? "#000" : (st.id < 100 ? "#00" : (st.id < 1000 ? "#0" : "#")))
+			st.name = "[prefix][st.id]"
+			shop_area.transactions_list += st
+
+			for(var/item/itemtemplate/I in transaction_items)
+				shop_area.items_prices.Remove(I)
+			transaction_items = list()
+			transaction_total = 0
+		else if(href_list["option"] == "deleteCheckOut")
+			if(transaction_items.len == 0)
 				return TOPIC_HANDLED
 			for(var/item/itemtemplate/I in transaction_items)
 				shop_area.items_prices.Remove(I)
 			transaction_items = list()
 			transaction_total = 0
-		else if(href_list["option"] == "shutdown")
-			mode = 0
-		else if(href_list["option"] == "newshop") // For testing purposes
-			var/area/shop/shop_area = new()
-			shop_areas_list += shop_area
-		else if (href_list["option"] == "takescanner")
+		else if(href_list["option"] == "takescanner")
 			toggle_scanner()
-		else if (href_list["option"] == "takescanner")
+		else if(href_list["option"] == "takescanner")
 			for(var/item/itemtemplate/I in transaction_items)
 				if(I.item == href_list["option"]) transaction_items.Remove(I)
+		else if(href_list["option"] == "test") // For testing purposes
+			to_chat(user, "Creating...")
+			var/area/shop/s = new()
+			s.institution_name = "David's Veggies"
+			to_chat(user, "Created [s.id]")
+			shop_areas_list += s
 	else if(href_list["removeFromPrices"])
 		var/remove_item_id = href_list["removeFromPrices"]
 		for(var/item/itemtemplate/I in shop_area.items_prices)
@@ -335,9 +410,17 @@
 	else if(href_list["takeCash"])
 		var/thaler_value = href_list["takeCash"]
 		for(var/item/thaler/T in thalers)
-			if(T.value == thaler_value)
+			if("[T.worth]" == "[thaler_value]")
 				T.amount--
-				spawn_money(thaler_value,src.loc,user)
+				spawn_money(T.worth, src.loc, user)
+	else if(href_list["PC_shutdown"])
+		mode = 0
+	else if(href_list["viewTransaction"])
+		selected_transaction = href_list["viewTransaction"]
+		mode = 8
+	else if(href_list["printTransaction"])
+		to_chat(usr, "*Printing transaction...*")
+		return print_transaction(href_list["printTransaction"])
 
 	return TOPIC_REFRESH
 
@@ -347,8 +430,8 @@
 	var/obj/item/weapon/paper/R = new(src.loc)
 	R.SetName("Receipt")
 
-	//Temptative new manual:
-	R.info += "<b>This is a ticket!!</b><br><br>"
+	// Ticket text
+	R.info += "<b>[shop_area.institution_name]</b><br><br>"
 	for(var/item/itemtemplate/I in transaction_items)
 		R.info += "- [I.name] (T[I.price])<br>"
 	R.info += "<br>Total price: T[transaction_total]<br>"
@@ -366,6 +449,64 @@
 	R.stamps += "<HR><i>This paper has been stamped by a cash register.</i>"
 
 	return TOPIC_HANDLED
+
+// Print transaction
+/obj/machinery/cashregister/proc/print_transaction(var/item/shop_transaction/ST)
+	// Create paper
+	var/obj/item/weapon/paper/R = new(src.loc)
+	R.SetName("Transaction [ST.name]")
+
+	//Temptative new manual:
+	R.info += "<b>[shop_area.institution_name] [ST.name]</b><br><br>"
+	for(var/item/itemtemplate/I in ST.items)
+		R.info += "- [I.name] (T[I.price])<br>"
+	R.info += ""
+	R.info += "<br>SUBTOTAL: T[ST.total_amount * (100 - ST.tax_applied)]<br>"
+	R.info += "<br>TAX: T[ST.tax_applied]<br>"
+	R.info += "<br>TOTAL: T[ST.total_amount]<br>"
+
+	// Stamp de receipt
+	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+	stampoverlay.icon_state = "paper_stamp-boss"
+	if(!R.stamped)
+		R.stamped = new
+	R.offset_x += 0
+	R.offset_y += 0
+	R.ico += "paper_stamp-boss"
+	R.stamped += /obj/item/weapon/stamp
+	R.overlays += stampoverlay
+	R.stamps += "<HR><i>This paper has been stamped by a cash register.</i>"
+
+	return TOPIC_HANDLED
+
+// Pay with card
+/obj/machinery/cashregister/proc/pay_with_card(obj/item/device/W, mob/user)
+	if(transaction_total > 0)
+		var/obj/item/weapon/card/id/idcard = W
+		var/datum/money_account/D = get_account(idcard.associated_account_number)
+		if(D)
+			if(D.money >= transaction_total)
+				D.withdraw(transaction_total, "Purchase at [shop_area.institution_name]", shop_area.institution_name)
+				var/item/shop_transaction/st = new()
+				st.id = ++shop_area.transactions_counter
+				st.total_amount = transaction_total
+				st.tax_applied = tax
+				st.items = transaction_items
+				var/prefix = (st.id < 10 ? "#000" : (st.id < 100 ? "#00" : (st.id < 1000 ? "#0" : "#")))
+				st.name = "[prefix][st.id]"
+				shop_area.transactions_list += st
+
+				for(var/item/itemtemplate/I in transaction_items)
+					shop_area.items_prices.Remove(I)
+				transaction_items = list()
+				transaction_total = 0
+				to_chat(user, "*Beep*")
+			else
+				to_chat(user, "Not enough money.")
+		else
+			to_chat(user, "Error. No account found.")
+	else
+		to_chat(user, "It seems like there's nothing to pay for.")
 
 // Scanner stuff
 // Take scanner

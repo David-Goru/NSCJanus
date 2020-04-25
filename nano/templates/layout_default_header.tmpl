@@ -25,6 +25,15 @@
 	</div>
 	<div style="float: right">
 		<table><tr>
+			{{if data.hassettings}}
+				<td>{{:helper.link('Settings', null, { 'option' : 'toggleSettings' })}}
+			{{/if}}
+			{{if data.hasscanner}}
+				<td>{{:helper.link('Take scanner', null, { 'option' : 'takescanner' })}}
+			{{/if}}
+			{{if data.hasback}}
+				<td>{{:helper.link('Back', null, { 'option' : 'toggleBack' })}}
+			{{/if}}
 			<td>{{:helper.link('Shutdown', null, {'PC_shutdown' : 1})}}
 			{{if data.PC_showexitprogram}}
 				<td>{{:helper.link('Exit Program', null, {'PC_exit' : 1})}}

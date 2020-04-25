@@ -1,7 +1,7 @@
 // Define cash register alarm object
 /obj/machinery/cashregisteralarm
 	name = "\improper Cash register alarm"
-	desc = "Cash alarm register description"
+	desc = "Cash register alarm description"
 	icon = 'icons/obj/cashregister.dmi'
 	icon_state = "alarm"
 
@@ -33,7 +33,7 @@
 		flick("alarm_enabled", src)
 	return
 
-// When alarmr is clicked with something on hand
+// When alarm is clicked with something on hand
 /obj/machinery/cashregisteralarm/attackby(obj/item/device/W, mob/user, params)
 	if((obj_flags & OBJ_FLAG_ANCHORABLE) && isWrench(W))
 		wrench_floor_bolts(user)
