@@ -407,9 +407,257 @@
 	name = "\improper Fourth Deck"
 	icon_state = "deck-4"
 
-/obj/structure/sign/deck/fifth
-	name = "\improper Fifth Deck"
-	icon_state = "deck-5"
+/obj/structure/sign/deck/direction_onetofive
+	name = "\improper Direction one to five"
+	icon_state = "direction_onetofive"
+
+/obj/structure/sign/deck/direction_sixtonine
+	name = "\improper Direction six to nine"
+	icon_state = "direction_sixtonine"
+
+/obj/structure/sign/deck/direction_tentoeighteen
+	name = "\improper Direction ten to eighteen"
+	icon_state = "direction_tentoeighteen"
+
+/obj/structure/sign/deck/direction_meeting
+	name = "\improper Direction meeting"
+	icon_state = "direction_meeting"
+
+/obj/structure/sign/deck/direction_admin
+	name = "\improper Direction admin"
+	icon_state = "direction_admin"
+
+/obj/structure/sign/deck/direction_park
+	name = "\improper Direction park"
+	icon_state = "direction_park"
+
+/obj/structure/sign/deck/direction_hydroponics
+	name = "\improper Direction hydroponics"
+	icon_state = "direction_hydroponics"
+
+/obj/structure/sign/deck/direction_pool
+	name = "\improper Direction pool"
+	icon_state = "direction_pool"
+
+/obj/structure/sign/deck/direction_holodeck
+	name = "\improper Direction holodeck"
+	icon_state = "direction_holodeck"
+
+/obj/structure/sign/deck/direction_sauna
+	name = "\improper Direction sauna"
+	icon_state = "direction_sauna"
+
+/obj/structure/sign/deck/direction_dhallway
+	name = "\improper Direction D hallway"
+	icon_state = "direction_dhallway"
+
+/obj/structure/sign/deck/direction_ehallway
+	name = "\improper Direction E hallway"
+	icon_state = "direction_ehallway"
+
+/obj/structure/sign/deck/direction_market
+	name = "\improper Direction market"
+	icon_state = "direction_market"
+
+/obj/structure/sign/deck/apartment_1b
+	name = "\improper Apartment 1B"
+	icon_state = "apartment_1b"
+
+/obj/structure/sign/deck/apartment_2b
+	name = "\improper Apartment 2B"
+	icon_state = "apartment_2b"
+
+/obj/structure/sign/deck/apartment_3b
+	name = "\improper Apartment 3B"
+	icon_state = "apartment_3b"
+
+/obj/structure/sign/deck/apartment_4b
+	name = "\improper Apartment 4B"
+	icon_state = "apartment_4b"
+
+/obj/structure/sign/deck/apartment_1a
+	name = "\improper Apartment 1A"
+	icon_state = "apartment_1a"
+
+/obj/structure/sign/deck/apartment_2a
+	name = "\improper Apartment 2A"
+	icon_state = "apartment_2a"
+
+/obj/structure/sign/deck/apartment_3a
+	name = "\improper Apartment 3A"
+	icon_state = "apartment_3a"
+
+/obj/structure/sign/deck/apartment_4a
+	name = "\improper Apartment 4A"
+	icon_state = "apartment_4a"
+
+/obj/structure/sign/deck/apartment_5a
+	name = "\improper Apartment 5A"
+	icon_state = "apartment_5a"
+
+/obj/structure/sign/deck/apartment_1c
+	name = "\improper Apartment 1C"
+	icon_state = "apartment_1c"
+
+/obj/structure/sign/deck/apartment_2c
+	name = "\improper Apartment 2C"
+	icon_state = "apartment_1c"
+
+/obj/structure/sign/deck/apartment_3c
+	name = "\improper Apartment 3C"
+	icon_state = "apartment_3c"
+
+/obj/structure/sign/deck/apartment_4c
+	name = "\improper Apartment 4C"
+	icon_state = "apartment_4c"
+
+/obj/structure/sign/deck/apartment_5c
+	name = "\improper Apartment 5C"
+	icon_state = "apartment_5c"
+
+/obj/structure/sign/deck/apartment_6c
+	name = "\improper Apartment 6C"
+	icon_state = "apartment_6c"
+
+/obj/structure/sign/deck/apartment_7c
+	name = "\improper Apartment 7C"
+	icon_state = "apartment_7c"
+
+/obj/structure/sign/deck/apartment_8c
+	name = "\improper Apartment 8C"
+	icon_state = "apartment_8c"
+
+/obj/structure/sign/deck/apartment_9c
+	name = "\improper Apartment 9C"
+	icon_state = "apartment_9c"
+
+/obj/structure/sign/deck/apartment_10c
+	name = "\improper Apartment 10C"
+	icon_state = "apartment_10c"
+
+/obj/structure/sign/deck/apartment_11c
+	name = "\improper Apartment 11C"
+	icon_state = "apartment_1c"
+
+/obj/structure/sign/deck/apartment_1d
+	name = "\improper Apartment 1D"
+	icon_state = "apartment_1d"
+
+/obj/structure/sign/deck/apartment_2d
+	name = "\improper Apartment 2D"
+	icon_state = "apartment_1d"
+
+/obj/structure/sign/deck/apartment_3d
+	name = "\improper Apartment 3D"
+	icon_state = "apartment_3d"
+
+/obj/structure/sign/deck/apartment_4d
+	name = "\improper Apartment 4D"
+	icon_state = "apartment_4d"
+
+/obj/structure/sign/deck/apartment_5d
+	name = "\improper Apartment 5D"
+	icon_state = "apartment_5d"
+
+/obj/structure/sign/deck/apartment_6d
+	name = "\improper Apartment 6D"
+	icon_state = "apartment_6d"
+
+/obj/structure/sign/deck/apartment_7d
+	name = "\improper Apartment 7D"
+	icon_state = "apartment_7d"
+
+/obj/structure/sign/deck/apartment_8d
+	name = "\improper Apartment 8D"
+	icon_state = "apartment_8d"
+
+/obj/structure/sign/deck/apartment_1e
+	name = "\improper Apartment 1E"
+	icon_state = "apartment_1e"
+
+/obj/structure/sign/deck/apartment_2e
+	name = "\improper Apartment 2E"
+	icon_state = "apartment_1e"
+
+/obj/structure/sign/deck/apartment_3e
+	name = "\improper Apartment 3E"
+	icon_state = "apartment_3e"
+
+/obj/structure/sign/deck/apartment_4e
+	name = "\improper Apartment 4E"
+	icon_state = "apartment_4e"
+
+/obj/structure/sign/deck/hallway_a
+	name = "\improper Hallway A"
+	icon_state = "hallway_a"
+
+/obj/structure/sign/deck/hallway_b
+	name = "\improper Hallway B"
+	icon_state = "hallway_b"
+
+/obj/structure/sign/deck/hallway_c
+	name = "\improper Hallway C"
+	icon_state = "hallway_c"
+
+/obj/structure/sign/deck/hallway_d
+	name = "\improper Hallway D"
+	icon_state = "hallway_d"
+
+/obj/structure/sign/deck/hallway_e
+	name = "\improper Hallway E"
+	icon_state = "hallway_e"
+
+/obj/structure/sign/deck/ads_monitor
+	name = "\improper Ads monitor"
+	icon_state = "ads_monitor"
+
+/obj/structure/sign/deck/ads_monitor2
+	name = "\improper Ads monitor 2"
+	icon_state = "ads_monitor2"
+
+/obj/structure/sign/deck/bistro
+	name = "\improper Bistro"
+	icon_state = "bistro"
+
+/obj/structure/sign/deck/veggies
+	name = "\improper Veggies"
+	icon_state = "veggies"
+
+/obj/structure/sign/deck/clinic
+	name = "\improper Clinic"
+	icon_state = "clinic"
+
+/obj/structure/sign/deck/bakery
+	name = "\improper Bakery"
+	icon_state = "bakery"
+
+/obj/structure/sign/deck/marinasignleft
+	name = "\improper Marina sign left"
+	icon_state = "marinasignleft"
+
+/obj/structure/sign/deck/marinasignmiddle
+	name = "\improper Marina sign middle"
+	icon_state = "marinasignmiddle"
+
+/obj/structure/sign/deck/marinasignright
+	name = "\improper Marina sign right"
+	icon_state = "marinasignright"
+
+/obj/structure/sign/deck/saunaleft
+	name = "\improper Sauna left"
+	icon_state = "saunaleft"
+
+/obj/structure/sign/deck/saunaright
+	name = "\improper Sauna right"
+	icon_state = "saunaright"
+
+/obj/structure/sign/deck/saunamen
+	name = "\improper Sauna men"
+	icon_state = "saunamen"
+
+/obj/structure/sign/deck/saunawomen
+	name = "\improper Sauna women"
+	icon_state = "saunawomen"
 
 /obj/item/sign/medipolma
 	name = "medical diploma"
