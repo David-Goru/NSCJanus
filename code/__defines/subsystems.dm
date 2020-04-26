@@ -51,6 +51,7 @@
 #define SS_INIT_BAY_LEGACY      -12
 #define SS_INIT_TICKER          -20
 #define SS_INIT_UNIT_TESTS      -100
+#define INIT_ORDER_HOLOMAPS		-5
 
 // SS runlevels
 

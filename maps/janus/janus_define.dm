@@ -1,12 +1,29 @@
+#define Z_LEVEL_FIRST_JANUS						1
+#define Z_LEVEL_SECOND_JANUS					2
+#define Z_LEVEL_THIRD_JANUS						3
+#define Z_LEVEL_FOURTH_JANUS					4
+#define Z_LEVEL_FIFTH_JANUS						5
+#define Z_LEVEL_SIXTH_JANUS						6
+#define Z_LEVEL_SEVENTH_JANUS					7
+
 /datum/map/janus
 	name = "Janus"
 	full_name = "NSC Janus"
 	path = "janus"
 	flags = MAP_HAS_BRANCH | MAP_HAS_RANK
 
-	admin_levels = list(7,8)
-	empty_levels = list(9)
-	accessible_z_levels = list("1"=1,"2"=3,"3"=1,"4"=1,"5"=1,"6"=1,"9"=30)
+	holomap_smoosh = list(list(
+		Z_LEVEL_FIRST_JANUS,
+		Z_LEVEL_SECOND_JANUS,
+		Z_LEVEL_THIRD_JANUS,
+		Z_LEVEL_FOURTH_JANUS,
+		Z_LEVEL_FIFTH_JANUS,
+		Z_LEVEL_SIXTH_JANUS,
+		Z_LEVEL_SEVENTH_JANUS))
+
+	admin_levels = list(8,9)
+	empty_levels = list(10)
+	accessible_z_levels = list("1"=1,"2"=1,"3"=1,"4"=1,"5"=1,"6"=1, "7" = 1, "10"=30)
 	overmap_size = 35
 	overmap_event_areas = 34
 	usable_email_tlds = list("janus.ec.scg", "janus.fleet.mil", "freemail.net", "janus.scg")
@@ -38,3 +55,54 @@
 
 	away_site_budget = 3
 	id_hud_icons = 'maps/janus/icons/assignment_hud.dmi'
+
+// For making the 6-in-1 holomap, we calculate some offsets
+#define JANUS_MAP_SIZE 177 // Width and height of compiled in Southern Cross z levels.
+#define JANUS_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
+#define JANUS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*JANUS_MAP_SIZE) - JANUS_HOLOMAP_CENTER_GUTTER) / 2) // 100
+#define JANUS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*JANUS_MAP_SIZE)) / 2) // 60
+
+/datum/map_z_level/janus/first
+	z = Z_LEVEL_FIRST_JANUS
+	name = "Floor 1"
+	holomap_legend_x = 220
+	holomap_legend_y = 200
+
+/datum/map_z_level/janus/second
+	z = Z_LEVEL_SECOND_JANUS
+	name = "Floor 2"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*1
+
+/datum/map_z_level/janus/third
+	z = Z_LEVEL_THIRD_JANUS
+	name = "Floor 3"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*2
+
+/datum/map_z_level/janus/fourth
+	z = Z_LEVEL_FOURTH_JANUS
+	name = "Floor 4"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*3
+
+
+/datum/map_z_level/janus/fifth
+	z = Z_LEVEL_FIFTH_JANUS
+	name = "Floor 5"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*4
+
+
+/datum/map_z_level/janus/sixth
+	z = Z_LEVEL_SIXTH_JANUS
+	name = "Floor 6"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*5
+
+
+/datum/map_z_level/janus/seventh
+	z = Z_LEVEL_SEVENTH_JANUS
+	name = "Floor 7"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*6

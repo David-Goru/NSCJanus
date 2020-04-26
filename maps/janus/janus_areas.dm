@@ -27,6 +27,7 @@
 /area/maintenance/fifthdeck
 	name = "Fifth Deck Maintenance"
 	icon_state = "maintcentral"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/fifthdeck/aftport
 	name = "Fifth Deck Aft Port Maintenance"
@@ -59,6 +60,7 @@
 /area/maintenance/fourthdeck
 	name = "Fourth Deck Maintenance"
 	icon_state = "maintcentral"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/fourthdeck/aft
 	name = "Fourth Deck Aft Maintenance"
@@ -83,6 +85,7 @@
 /area/teleporter/fourthdeck
 	name = "\improper Fourth Deck Teleporter"
 	icon_state = "teleporter"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/fourthdeck
 	name = "Fourth Deck Substation"
@@ -106,6 +109,7 @@
 /area/maintenance/thirddeck
 	name = "Third Deck Maintenance"
 	icon_state = "maintcentral"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/thirddeck/foreport
 	name = "Third Deck Fore Port Maintenance"
@@ -134,6 +138,7 @@
 /area/teleporter/thirddeck
 	name = "\improper Third Deck Teleporter"
 	icon_state = "teleporter"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/thirddeck
 	name = "Third Deck Substation"
@@ -147,11 +152,13 @@
 /area/crew_quarters/laundry
 	name = "\improper Laundry Room"
 	icon_state = "Sleep"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 //Second Deck (Z-3)
 /area/maintenance/seconddeck
 	name = "Second Deck Maintenance"
 	icon_state = "maintcentral"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/seconddeck/aftstarboard
 	name = "Second Deck Aft Starboard Maintenance"
@@ -191,6 +198,7 @@
 /area/teleporter/seconddeck
 	name = "\improper Second Deck Teleporter"
 	icon_state = "teleporter"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/seconddeck
 	name = "Second Deck Substation"
@@ -199,6 +207,7 @@
 /area/maintenance/firstdeck
 	name = "First Deck Maintenance"
 	icon_state = "maintcentral"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/firstdeck/aftstarboard
 	name = "First Deck Aft Starboard Maintenance"
@@ -227,6 +236,7 @@
 /area/teleporter/firstdeck
 	name = "\improper First Deck Teleporter"
 	icon_state = "teleporter"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/hallway/primary/firstdeck/fore
 	name = "\improper First Deck Fore Hallway"

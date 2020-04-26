@@ -79,3 +79,20 @@
 	icon_state = "bulb-construct-item"
 	refund_amt = 1
 	build_machine_type = /obj/machinery/light_construct/small
+
+//////////////////////////////
+// Frame Type Datum - Describes the frame structures that can be created from a frame item.
+//////////////////////////////
+/datum/frame/frame_types
+	var/icon/icon_override		// Icon to set on frame object when building. If null icon is unchanged.
+	var/name					// Name assigned to the frame object.
+	var/frame_size = 5			// Sheets of metal required to build.
+	var/frame_class				// Determines construction method.  "machine", "computer", "alarm", or "display"
+	var/x_offset				// For wall frames: pixel_x
+	var/y_offset				// For wall frames: pixel_y
+
+// Get the icon state to use at a given state.  Default implementation is based on the frame's name
+/datum/frame/frame_types/proc/get_icon_state(var/state)
+	var/type = lowertext(name)
+	type = replacetext(type, " ", "_")
+	return "[type]_[state]"

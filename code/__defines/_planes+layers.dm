@@ -161,6 +161,9 @@ What is the naming convention for planes or layers?
 	#define OBFUSCATION_LAYER           5.2
 	#define BASE_AREA_LAYER             999
 
+#define TURF_PLANE				-45 // Turfs themselves, most flooring
+	#define ABOVE_TURF_LAYER	2.1	// Snow and such
+
 #define OBSERVER_PLANE             1
 
 #define LIGHTING_PLANE             2 // For Lighting. - The highest plane (ignoring all other even higher planes)

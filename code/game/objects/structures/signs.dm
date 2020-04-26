@@ -407,6 +407,10 @@
 	name = "\improper Fourth Deck"
 	icon_state = "deck-4"
 
+/obj/structure/sign/deck/fifth
+	name = "\improper Fifth Deck"
+	icon_state = "deck-5"
+
 /obj/structure/sign/deck/direction_onetofive
 	name = "\improper Direction one to five"
 	icon_state = "direction_onetofive"

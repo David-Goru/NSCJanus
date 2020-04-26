@@ -23,6 +23,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
 	var/path
+	var/list/zlevels = list()
 
 	var/list/station_levels = list() // Z-levels the station exists on
 	var/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
@@ -56,6 +57,12 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/company_name  = "BadMan"
 	var/company_short = "BM"
 	var/system_name = "Uncharted System"
+
+	var/list/holomap_smoosh		// List of lists of zlevels to smoosh into single icons
+	var/list/holomap_offset_x = list()
+	var/list/holomap_offset_y = list()
+	var/list/holomap_legend_x = list()
+	var/list/holomap_legend_y = list()
 
 	var/map_admin_faxes = list()
 
@@ -392,3 +399,29 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	if(C.mob) // Check if the client is still connected to something
 		// Hide title screen, allowing player to see the map
 		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
+
+// Structure to hold zlevel info together in one nice convenient package.
+/datum/map_z_level
+	var/z = 0				// Actual z-index of the zlevel. This had better be right!
+	var/name				// Friendly name of the zlevel
+// Holomaps
+	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	var/holomap_legend_x = 96	// x position of the holomap legend for this z
+	var/holomap_legend_y = 96	// y position of the holomap legend for this z
+
+// Default constructor applies itself to the parent map datum
+/datum/map_z_level/New(var/datum/map/map)
+	if(!z) return
+	map.zlevels["[z]"] = src
+	// Holomaps
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (holomap_offset_x < 0)
+		holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (holomap_offset_x < 0)
+		holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
+	LIST_NUMERIC_SET(map.holomap_offset_x, z, holomap_offset_x)
+	LIST_NUMERIC_SET(map.holomap_offset_y, z, holomap_offset_y)
+	LIST_NUMERIC_SET(map.holomap_legend_x, z, holomap_legend_x)
+	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)
