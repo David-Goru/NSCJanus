@@ -24,6 +24,15 @@
 	New()
 		update_state()
 
+/obj/structure/door_assembly/door_assembly_keyp
+	icon = 'icons/obj/doors/external/door.dmi'
+	fill_icon = 'icons/obj/doors/external/fill_steel.dmi'
+	glass_icon = 'icons/obj/doors/external/fill_glass.dmi'
+	base_name = "Keypad Airlock"
+	airlock_type = /obj/machinery/door/airlock/external
+	glass_type = /obj/machinery/door/airlock/external/glass
+	paintable = 0
+
 /obj/structure/door_assembly/door_assembly_hatch
 	icon = 'icons/obj/doors/hatch/door.dmi'
 	panel_icon = 'icons/obj/doors/hatch/panel.dmi'
@@ -183,7 +192,7 @@
 
 	else if(istype(W, /obj/item/stack/material) && !glass)
 		var/obj/item/stack/material/S = W
-		var/material_name = S.get_material_name()		
+		var/material_name = S.get_material_name()
 		if (S)
 			if (S.get_amount() >= 1)
 				if(material_name == MATERIAL_GLASS && S.reinf_material)

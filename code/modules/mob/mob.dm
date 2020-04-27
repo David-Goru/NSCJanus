@@ -426,7 +426,6 @@
 	if(prefs.lastchangelog != changelog_hash)
 		prefs.lastchangelog = changelog_hash
 		SScharacter_setup.queue_preferences_save(prefs)
-		winset(src, "rpane.changelog", "font-style=;")
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"

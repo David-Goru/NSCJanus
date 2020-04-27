@@ -5,6 +5,7 @@
 #define Z_LEVEL_FIFTH_JANUS						5
 #define Z_LEVEL_SIXTH_JANUS						6
 #define Z_LEVEL_SEVENTH_JANUS					7
+#define Z_LEVEL_EIGHTH_JANUS					8
 
 /datum/map/janus
 	name = "Janus"
@@ -19,25 +20,26 @@
 		Z_LEVEL_FOURTH_JANUS,
 		Z_LEVEL_FIFTH_JANUS,
 		Z_LEVEL_SIXTH_JANUS,
-		Z_LEVEL_SEVENTH_JANUS))
+		Z_LEVEL_SEVENTH_JANUS,
+		Z_LEVEL_EIGHTH_JANUS))
 
 	admin_levels = list(8,9)
 	empty_levels = list(10)
-	accessible_z_levels = list("1"=1,"2"=1,"3"=1,"4"=1,"5"=1,"6"=1, "7" = 1, "10"=30)
+	accessible_z_levels = list("1"=1,"2"=1,"3"=1,"4"=1,"5"=1,"6"=1, "7" = 1, "8" = 1, "10"=30)
 	overmap_size = 35
 	overmap_event_areas = 34
-	usable_email_tlds = list("janus.ec.scg", "janus.fleet.mil", "freemail.net", "janus.scg")
+	usable_email_tlds = list("janus.nt", "nanotrasen.com", "nanotrasen.nt", "freemail.net")
 
-	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
+	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage", "Arrivals Shuttle")
 	default_spawn = "Cryogenic Storage"
 
 	station_name  = "NSC Janus"
 	station_short = "Janus"
 	dock_name     = "TBD"
-	boss_name     = "Expeditionary Command"
-	boss_short    = "Command"
-	company_name  = "Sol Central Government"
-	company_short = "SolGov"
+	boss_name     = "Nanotrasen Colonial Branch Command"
+	boss_short    = "Colonial Command"
+	company_name  = "Nanotrasen"
+	company_short = "NT"
 
 	map_admin_faxes = list("Corporate Central Office")
 
@@ -106,3 +108,10 @@
 	name = "Floor 7"
 	holomap_offset_x = 220
 	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*6
+
+
+/datum/map_z_level/janus/eighth
+	z = Z_LEVEL_EIGHTH_JANUS
+	name = "Floor 8"
+	holomap_offset_x = 220
+	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*7

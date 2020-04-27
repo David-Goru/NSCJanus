@@ -1,75 +1,102 @@
-// Keypad airlock
+// Airlock with keypad
 /obj/machinery/door/airlock/keypad
 	door_color = COLOR_WHITE
-	name = "Keypad Entry Airlock"
+	name = "Keypad entry airlock"
 	desc = "A door with a keypad lock."
 	assembly_type = /obj/structure/door_assembly/door_assembly_keyp
-	var/code = ""
-	var/l_code = null
-	var/l_set = 0
-	var/l_setshort = 0
-	var/l_hacking = 0
-	var/open = 0
 
-/obj/machinery/door/airlock/keypad/Topic(href, href_list)
-	..()
-	if((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
-		return
-	if(href_list["type"])
-		if(href_list["type"] == "E")
-			if((src.l_set == 0) && (length(src.code) == 5) && (!src.l_setshort) && (src.code != "ERROR"))
-				src.l_code = src.code
-				src.l_set = 1
-			else if((src.code == src.l_code) && (src.emagged == 0) && (src.l_set == 1))
-				src.locked = 0
-				update_icon()
-				src.overlays = null
-				src.code = null
-			else
-				src.code = "ERROR"
-		else
-			if((href_list["type"] == "R") && (src.emagged == 0) && (!src.l_setshort))
-				src.locked = 1
-				src.overlays = null
-				update_icon()
-				src.code = null
-				if(!density)
-					src.close(usr)
-			else
-				src.code += text("[]", href_list["type"])
-				if(length(src.code) > 5)
-					src.code = "ERROR"
-		src.add_fingerprint(usr)
-		for(var/mob/M in viewers(1, src.loc))
-			if((M.client && M.machine == src))
-				src.attack_hand(M)
-			return
-	return
+	var/saved_pass = null
+	var/number_entered = null
+	var/show_code = "Set password"
 
+// On create
+/obj/machinery/door/airlock/keypad/New()
+	. = ..()
+	req_access = list()
+
+// On click
 /obj/machinery/door/airlock/keypad/attack_hand(mob/user as mob)
 	if(!istype(user, /mob/living/silicon))
 		if(src.isElectrified())
-			if(src.shock(user, 100))
-				return
+			src.shock(user, 100)
 
-	if(!istype(user, /mob/living/silicon))
-		user.set_machine(src)
-		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
-		var/message = "Code"
-		if((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
-			dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW DOOR PASSCODE.</b>")
-		if(src.emagged)
-			dat += text("<p>\n<font color=red><b>LOCKING SYSTE	M ERROR - 1701</b></font>")
-		if(src.l_setshort)
-			dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
-		message = text("[]", src.code)
-		if(!src.locked)
-			message = "*****"
-		dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
-		show_browser(user, dat, "window=caselock;size=300x280")
+	ui_interact(user)
 
-	if(src.p_open)
-		wires.Interact(user)
-	else
-		..(user)
-	return
+// UI
+/obj/machinery/door/airlock/keypad/interface_interact(mob/user)
+	ui_interact(user)
+	return TRUE
+
+/obj/machinery/door/airlock/keypad/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
+
+	var/list/data = list()
+	data["show_code"] = show_code
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "keypad.tmpl", "Keypad", 200, 225)
+		ui.set_initial_data(data)
+		ui.open()
+
+// Answering to UI interactions
+/obj/machinery/door/airlock/keypad/OnTopic(mob/user, href_list, datum/topic_state/state)
+	if(user.restrained() || (get_dist(user, src) > 1))
+		return
+	if(href_list["button"])
+		if(!istype(user, /mob/living/silicon))
+			if(isElectrified())
+				shock(user, 100)
+		if(href_list["button"] == "E")
+			if(number_entered && length(number_entered) == 5)
+				if(locked)
+					if(number_entered == saved_pass)
+						src.unlock()
+						show_code = "UNLOCKED"
+						number_entered = null
+
+						// Unlock the airlock
+						if(src.density)
+							src.open()
+					else
+						show_code = "ERROR"
+						number_entered = null
+				else if(saved_pass == null)
+					saved_pass = number_entered
+					number_entered = null
+					if(!src.density)
+						src.close()
+					src.lock()
+					show_code = "LOCKED"
+			else
+				show_code = "ERROR"
+		else if(href_list["button"] == "R")
+			number_entered = null
+			if(locked)
+				show_code = "LOCKED"
+			else
+				if(saved_pass == null)
+					show_code = "UNLOCKED"
+				else
+					if(!src.density)
+						src.close()
+					src.lock()
+					show_code = "LOCKED"
+		else if(number_entered == null || length(number_entered) < 5)
+			if(src.locked || saved_pass == null)
+				if (number_entered == null)
+					number_entered = href_list["button"]
+				else
+					number_entered += href_list["button"]
+
+				if(saved_pass == null)
+					show_code = number_entered
+				else
+					if(length(number_entered) == 1)
+						show_code = "*"
+					else
+						show_code += "*"
+			else
+				show_code = "UNLOCKED"
+
+	updateUsrDialog()

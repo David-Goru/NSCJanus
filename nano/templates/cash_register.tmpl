@@ -1,6 +1,6 @@
 <!-- 
 	Interface for cash register (NSC Janus)
-	See: code/modules/economy/cash_register.dm
+	See: code/modules/economy/Cash_Register.dm
 -->
 
 {{if data.hasshop == 0}}
@@ -17,8 +17,8 @@
 {{if data.mode == 1}} <!-- General screen -->
 <div class='item'>
 	{{if data.hasshop == 1}}
-	{{:helper.link('Inventory', null, { 'option' : 'togglePricesList' }, data.hasshop ? null : 'disabled')}}
-	{{:helper.link('Check-out', null, { 'option' : 'toggleScannedList' }, data.hasshop ? null : 'disabled')}}
+		{{:helper.link('Inventory', null, { 'option' : 'togglePricesList' }, data.hasshop ? null : 'disabled')}}
+		{{:helper.link('Check-out', null, { 'option' : 'toggleScannedList' }, data.hasshop ? null : 'disabled')}}
 	{{/if}}
 	{{:helper.link('Access cash drawer', null, { 'option' : 'toggleCash' })}}
 	{{:helper.link('View transactions', null, { 'option' : 'toggleTransactions' }, data.hasshop ? null : 'disabled')}}
@@ -36,7 +36,7 @@
 		<tr class="candystripe">
 		<td>No objects with prices.
 	{{/for}}
-	</table>
+	</table> 
 </div>
 {{else data.mode == 3}} <!-- Check-out screen -->
 <div class='item'>
@@ -52,11 +52,16 @@
 	{{/for}}
 	</table>
 	<div class='item'>
-		{{:helper.link('Print receipt', null, { 'option' : 'printReceipt' })}}
+		{{:helper.link('Print receipt', null, { 'option' : 'printReceipt' }, data.has_products > 0 ? null : 'disabled')}}
 		{{:helper.link('Objects paid', null, { 'option' : 'objectsPaid' }, data.has_products > 0 ? null : 'disabled')}}
 		{{:helper.link('Access cash drawer', null, { 'option' : 'toggleCash' })}}
 		{{:helper.link('Delete all', null, { 'option' : 'deleteCheckOut' })}}
 	</div>
+	<div class='item'><div style="float: right">SUBTOTAL: T{{:data.subtotal}}</div></div>
+	<div class='item'><div style="float: right">TAX ({{:data.tax}}%): {{:data.tax_total}}</div></div>
+	<div class='item'><div style="float: right">TOTAL: T{{:data.total}}</div></div>
+	<div class='item'><div style="float: right">CHANGE GIVEN: T{{:data.change_given}}</div></div>
+	<div class='item'><div style="float: right">{{:data.change_to_return}}</div></div>
 </div>
 {{else data.mode == 4}} <!-- Settings screen -->
 <div class='item'>
@@ -65,7 +70,7 @@
 	{{/if}}
 	{{:helper.link('Set account', null, { 'option' : 'setAccount' })}}
 	{{:helper.link('Link POS', null, { 'option' : 'setPOS' })}}
-	{{:helper.link('Set tags', null, { 'option' : 'setTags' }, 'disabled')}}
+	{{:helper.link('Set TAX', null, { 'option' : 'setTAX' }, 'disabled')}} 
 </div>
 {{else data.mode == 5}} <!-- Clear inventory confirmation -->
 <div class='item'>
@@ -74,31 +79,33 @@
 	{{:helper.link('Cancel', null, { 'option' : 'toggleSettings' })}}
 </div>
 {{else data.mode == 6}} <!-- Cash screen -->
-	<div class='item'>
+<div class='item'>
 	{{for data.thalers}}
-		{{:helper.link('T' + value.worth + ' (' + value.amount + ')', null, { 'takeCash' : value.worth}, value.amount > 0 ? null : 'disabled')}}
-	{{/for}}
-	</div>
+		<div class='item'>{{:helper.link('Draw', 'circle-arrow-s', { 'takeCash' : value.worth}, value.amount > 0 ? null : 'disabled')}} T{{:value.worth}} ({{:value.amount}})</div>
+	{{/for}} 
+</div>
 {{else data.mode == 7}} <!-- Transactions screen -->
 <div class='item'>
-</div>
-	<div class='item'>
 	{{for data.transactions}}
 		{{:helper.link('[' + value.name + ']', null, { 'viewTransaction' : value.id})}}
-	{{/for}}
-	</div>
+	{{empty}}
+		No transactions found.
+	{{/for}} 
+</div>
 {{else data.mode == 8}} <!-- View transaction screen -->
 <div class='item'>
-</div>
-	<div class='item'>
+	<table style="width:100%">
 	{{for data.items}}
-		<div style="float: left">{{:value.name}}</div><div style="float: right">T{{:value.price}}</div>
+		<tr class="candystripe">
+		<td>{{:value.name}}
+		<td>T{{:value.price}}
 	{{/for}}
-	</div>
+	</table>
 	<br>
 	<div class='item'><div style="float: right">SUBTOTAL: T{{:data.subtotal}}</div></div>
-	<div class='item'><div style="float: right">TAX: {{:data.tax}}%</div></div>
+	<div class='item'><div style="float: right">TAX ({{:data.tax}}%): {{:data.tax_total}}</div></div>
 	<div class='item'><div style="float: right">TOTAL: T{{:data.total}}</div></div>
-	{{:helper.link('Print', null, { 'printTransaction' : data.transaction})}}
-{{/if}}
+	{{:helper.link('Print', null, { 'printTransaction' : data.transaction})}} 
+</div>
+{{/if}} 
 {{:helper.link('Create area (test)', null, { 'option' : 'test'})}}

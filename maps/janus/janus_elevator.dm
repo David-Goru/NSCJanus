@@ -1,3 +1,41 @@
+
+//Janus Mining Turbolift
+
+/obj/machinery/computer/shuttle_control/lift/hangar
+	name = "mining lift controls"
+	shuttle_tag = "Hangar Mining Lift"
+	ui_template = "shuttle_control_console_lift.tmpl"
+	icon_state = "tiny"
+	icon_keyboard = "tiny_keyboard"
+	icon_screen = "lift"
+	density = 0
+
+/datum/shuttle/autodock/ferry/hangar_lift
+	name = "Primary Cargo Lift"
+	shuttle_area = /area/turbolift/hangar_lift
+	warmup_time = 3
+	waypoint_station = "nav_hangar_lift_top"
+	waypoint_offsite = "nav_hangar_lift_bottom"
+	sound_takeoff = 'sound/effects/lift_heavy_start.ogg'
+	sound_landing = 'sound/effects/lift_heavy_stop.ogg'
+	ceiling_type = null
+	knockdown = 0
+
+/obj/effect/shuttle_landmark/lift/hangar_top
+	name = "Top Level"
+	landmark_tag = "nav_hangar_lift_top"
+	base_area = /area/mining/mineral_processing
+	base_turf = /turf/simulated/open
+
+/obj/effect/shuttle_landmark/lift/hangar_bottom
+	name = "Lower Level"
+	landmark_tag = "nav_hangar_lift_bottom"
+	flags = SLANDMARK_FLAG_AUTOSET
+	base_area = /area/hallway/levelminusfour/primary
+	base_turf = /turf/simulated/floor/plating
+
+//EXAMPLE
+
 /obj/turbolift_map_holder/janus
 	name = "Janus turbolift map placeholder"
 	depth = 6

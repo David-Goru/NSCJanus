@@ -48,6 +48,7 @@ var/list/airlock_overlays = list()
 	var/obj/item/weapon/airlock_electronics/electronics = null
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
+	var/obj/machinery/padlock/padlock = null
 
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_open_force.ogg'
@@ -442,7 +443,7 @@ var/list/airlock_overlays = list()
 /*
 About the new airlock wires panel:
 *	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
-*		one wire from the ID scanner. Sending a pulse through this flashes the red light on the door (if the door has power). If you cut this wire, the door will stop recognizing valid IDs. (If the door has 0000 access, it still opens and closes, though)
+*		one wire from the ID scanner. Sending a pulse through this flashes the red light on the door (if the door has power). If you cut this wire, the door will stop recognizing valid IDs. (If the door has 0000 access, it still opens and s, though)
 *		two wires for power. Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter). Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be open, but bolts-raising will not work. Cutting these wires may electrocute the user.
 *		one wire for door bolts. Sending a pulse through this drops door bolts (whether the door is powered or not) or raises them (if it is). Cutting this wire also drops the door bolts, and mending it does not raise them. If the wire is cut, trying to raise the door bolts will not work.
 *		two wires for backup power. Sending a pulse through either one causes a breaker to trip, but this does not disable it unless main power is down too (in which case it is disabled for 1 minute or however long it takes main power to come back, whichever is shorter). Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
@@ -800,6 +801,9 @@ About the new airlock wires panel:
 	commands[++commands.len] = list("name" = "Safeties",				"command"= "safeties",				"active" = safe,					"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
 	commands[++commands.len] = list("name" = "Timing",					"command"= "timing",				"active" = normalspeed,				"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
 	commands[++commands.len] = list("name" = "Door State",				"command"= "open",					"active" = density,					"enabled" = "Closed",	"disabled" = "Opened", 		"danger" = 0, "act" = 0)
+	if(istype(src, /obj/machinery/door/airlock/keypad))
+		var/obj/machinery/door/airlock/keypad/keypad = src
+		commands[++commands.len] = list("name" = "Reset password",			"command"= "resetpass",				"active" = keypad.saved_pass != null,					"enabled" = "Closed",	"disabled" = "Opened", 		"danger" = 0, "act" = 0)
 
 	data["commands"] = commands
 
@@ -944,6 +948,10 @@ About the new airlock wires panel:
 			else if (activate && !src.lights)
 				lights = 1
 				to_chat(usr, "The door lights have been enabled.")
+		if("resetpass")
+			if(istype(src, /obj/machinery/door/airlock/keypad))
+				var/obj/machinery/door/airlock/keypad/keypad = src
+				keypad.saved_pass = null
 
 	update_icon()
 	return 1

@@ -15,6 +15,104 @@
 		/area/shuttle/specops/centcom,
 	)
 
+//Basics
+/area/maintenance/substation
+	name = "Substation"
+	icon_state = "substation"
+	sound_env = SMALL_ENCLOSED
+	req_access = list(access_seneng) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+//Elevators
+
+
+//Turbolifts
+/area/turbolift/hangar_lift
+	name = "\improper Mining Lift"
+	icon_state = "shuttle3"
+	base_turf = /turf/simulated/open
+
+
+//Level -4 (janus1)
+
+	//Hallways
+/area/hallway/levelminusfour/primary
+	name = "\improper Level Minus Four Hallway"
+	icon_state = "hallF"
+
+	//Maintenance tunnels
+/area/maintenance/levelminusfour/north
+	name = "Level Minus Four North Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/levelminusfour/south
+	name = "Level Minus Four South Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/substation/levelminusfour
+	name = "Level Minus Four Substation"
+	icon_state = "fmaint"
+
+/area/maintenance/levelconnection/minusfour
+	name = "Level Minus Four Connections Shaft"
+	icon_state = "fmaint"
+
+	//Rooms
+/area/hangar/shuttlefuel
+	name = "\improper Shuttle Fuel Bay"
+	icon_state = "toxstorage"
+	req_access = list(list(access_seneng)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+/area/hangar/canisterstorage
+	name = "Hangar Canister Storage"
+	icon_state = "toxstorage"
+	req_access = list(list(access_seneng)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+/area/hangar/shuttlebay1
+	name = "Hangar Bay One"
+	icon_state = "mining"
+	req_access = list(list(access_seneng, access_mining)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+/area/hangar/shuttlebay2
+	name = "Hangar Bay Two"
+	icon_state = "mining"
+	req_access = list(list(access_seneng)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+/area/hangar/shuttlebay3
+	name = "Hangar Bay Three"
+	icon_state = "mining"
+	req_access = list(list(access_seneng)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+//Level -3 (janus2)
+
+/area/mining/mineral_processing
+	name = "Mining Processing"
+	icon_state = "mining"
+	req_access = list(list(access_mining)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//To make it work, for now
+
 //Fifth Deck (Z-0)
 /area/hallway/primary/fifthdeck/fore
 	name = "\improper Fifth Deck Fore Hallway"
@@ -27,7 +125,6 @@
 /area/maintenance/fifthdeck
 	name = "Fifth Deck Maintenance"
 	icon_state = "maintcentral"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/fifthdeck/aftport
 	name = "Fifth Deck Aft Port Maintenance"
@@ -60,7 +157,6 @@
 /area/maintenance/fourthdeck
 	name = "Fourth Deck Maintenance"
 	icon_state = "maintcentral"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/fourthdeck/aft
 	name = "Fourth Deck Aft Maintenance"
@@ -85,7 +181,6 @@
 /area/teleporter/fourthdeck
 	name = "\improper Fourth Deck Teleporter"
 	icon_state = "teleporter"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/fourthdeck
 	name = "Fourth Deck Substation"
@@ -109,7 +204,6 @@
 /area/maintenance/thirddeck
 	name = "Third Deck Maintenance"
 	icon_state = "maintcentral"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/thirddeck/foreport
 	name = "Third Deck Fore Port Maintenance"
@@ -138,7 +232,6 @@
 /area/teleporter/thirddeck
 	name = "\improper Third Deck Teleporter"
 	icon_state = "teleporter"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/thirddeck
 	name = "Third Deck Substation"
@@ -152,13 +245,11 @@
 /area/crew_quarters/laundry
 	name = "\improper Laundry Room"
 	icon_state = "Sleep"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 //Second Deck (Z-3)
 /area/maintenance/seconddeck
 	name = "Second Deck Maintenance"
 	icon_state = "maintcentral"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/seconddeck/aftstarboard
 	name = "Second Deck Aft Starboard Maintenance"
@@ -198,7 +289,6 @@
 /area/teleporter/seconddeck
 	name = "\improper Second Deck Teleporter"
 	icon_state = "teleporter"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/substation/seconddeck
 	name = "Second Deck Substation"
@@ -207,7 +297,6 @@
 /area/maintenance/firstdeck
 	name = "First Deck Maintenance"
 	icon_state = "maintcentral"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/maintenance/firstdeck/aftstarboard
 	name = "First Deck Aft Starboard Maintenance"
@@ -236,7 +325,6 @@
 /area/teleporter/firstdeck
 	name = "\improper First Deck Teleporter"
 	icon_state = "teleporter"
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/hallway/primary/firstdeck/fore
 	name = "\improper First Deck Fore Hallway"
@@ -1231,12 +1319,6 @@
 /area/crew_quarters/heads
 	icon_state = "head_quarters"
 	req_access = list(access_heads)
-
-/area/maintenance/substation
-	name = "Substation"
-	icon_state = "substation"
-	sound_env = SMALL_ENCLOSED
-	req_access = list(access_engine_equip)
 
 /area/maintenance/exterior
 	name = "\improper Exterior Reinforcements"

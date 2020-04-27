@@ -16,8 +16,8 @@
 	var/panel_state = 0 // 0 for closed, 1 for open
 	var/is_powered = 0
 	var/cashregister_name = "Default cash register"
-	var/transaction_locked = 0 // Still scanning (0), or time to pay (1)?
 	var/transaction_total = 0 // Total transaction price
+	var/transaction_paid = 0
 	var/list/transaction_items = list() // To store items information (price, name, item...)
 	var/access_code = 0 // For changing account or locking the cash register
 	var/obj/item/weapon/cashregisterscanner/linked/scanner // Cash register's scanner
@@ -147,6 +147,8 @@
 			for(var/item/thaler/t in thalers)
 				if(t.worth == thaler.worth)
 					t.amount++
+					if(transaction_total > 0)
+						transaction_paid += thaler.worth
 	else
 		return ..()
 
@@ -177,7 +179,6 @@
 			mode = 0
 			return ..()
 		if("point")
-			// Add point emote
 			user.pointed(src)
 
 // Item object for the items list
@@ -250,7 +251,7 @@
 			data["hasshop"] = 0
 		else
 			data["hasshop"] = 1
-	else if(mode == 2) // Prices list screen
+	else if(mode == 2) // Inventory screen
 		data["text"] = "Inventory"
 
 		var/products[0]
@@ -258,7 +259,7 @@
 			products[++products.len] = list("name" = I.name, "price" = I.price, "item" = I.item_id)
 
 		data["products"] = products
-	else if(mode == 3) // Scanned list screen
+	else if(mode == 3) // Check-out screen
 		data["text"] = "Check-out"
 		data["has_products"] = transaction_items.len
 
@@ -267,6 +268,18 @@
 			products[++products.len] = list("name" = I.name, "price" = I.price, "item" = I.item_id)
 
 		data["products"] = products
+		data["subtotal"] = transaction_total
+		data["tax"] = tax
+		data["tax_total"] = round(tax / 100 * transaction_total, 1)
+		var/total_to_pay = transaction_total + round(tax / 100 * transaction_total, 1)
+		data["total"] = total_to_pay
+		data["change_given"] = transaction_paid
+		var/change_to_return = transaction_paid - total_to_pay
+		if(change_to_return >= 0)
+			data["change_to_return"] = "CHANGE TO RETURN: T[change_to_return]"
+		else
+			data["change_to_return"] = "NOT ENOUGH PAID"
+
 	else if(mode == 4)
 		data["text"] = "Settings"
 	else if(mode == 5)
@@ -294,10 +307,11 @@
 		for(var/item/itemtemplate/I in s.items)
 			items_list[++items_list.len] = list("name" = I.name, "price" = I.price)
 		data["items"] = items_list
-		data["subtotal"] = s.total_amount * (100 - s.tax_applied)
+		data["subtotal"] = s.total_amount
 		data["tax"] = s.tax_applied
-		data["total"] = s.total_amount
-		data["transaction"] = s
+		data["tax_total"] = round(s.tax_applied / 100 * s.total_amount, 1)
+		data["total"] = s.total_amount + round(s.tax_applied / 100 * s.total_amount, 1)
+		data["transaction"] = s.id
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -352,7 +366,7 @@
 		else if(href_list["option"] == "setPOS")
 			var/pos_id = (input(user, "Set POS", "POS ID") as null|num)
 
-			for (var/obj/machinery/cashregisterpos/pos in cash_register_pos_list)
+			for (var/obj/item/weapon/cashregisterpos/pos in cash_register_pos_list)
 				if (pos.id == pos_id)
 					pos.cash_register = src
 					to_chat(user, "POS linked to this cash register.")
@@ -363,7 +377,7 @@
 		else if(href_list["option"] == "printReceipt")
 			if(transaction_items.len == 0)
 				return TOPIC_HANDLED
-			to_chat(usr, "*Printing receipt...*")
+			to_chat(user, "*Printing receipt...*")
 			return print_receipt()
 		else if(href_list["option"] == "objectsPaid")
 			var/item/shop_transaction/st = new()
@@ -379,6 +393,7 @@
 				shop_area.items_prices.Remove(I)
 			transaction_items = list()
 			transaction_total = 0
+			transaction_paid = 0
 		else if(href_list["option"] == "deleteCheckOut")
 			if(transaction_items.len == 0)
 				return TOPIC_HANDLED
@@ -419,7 +434,7 @@
 		selected_transaction = href_list["viewTransaction"]
 		mode = 8
 	else if(href_list["printTransaction"])
-		to_chat(usr, "*Printing transaction...*")
+		to_chat(user, "*Printing transaction...*")
 		return print_transaction(href_list["printTransaction"])
 
 	return TOPIC_REFRESH
@@ -451,7 +466,13 @@
 	return TOPIC_HANDLED
 
 // Print transaction
-/obj/machinery/cashregister/proc/print_transaction(var/item/shop_transaction/ST)
+/obj/machinery/cashregister/proc/print_transaction(var/st_id)
+	// Get transaction
+	var/item/shop_transaction/ST
+	for (var/item/shop_transaction/s in shop_area.transactions_list)
+		if("[s.id]" == "[st_id]")
+			ST = s
+
 	// Create paper
 	var/obj/item/weapon/paper/R = new(src.loc)
 	R.SetName("Transaction [ST.name]")
@@ -461,9 +482,9 @@
 	for(var/item/itemtemplate/I in ST.items)
 		R.info += "- [I.name] (T[I.price])<br>"
 	R.info += ""
-	R.info += "<br>SUBTOTAL: T[ST.total_amount * (100 - ST.tax_applied)]<br>"
-	R.info += "<br>TAX: T[ST.tax_applied]<br>"
-	R.info += "<br>TOTAL: T[ST.total_amount]<br>"
+	R.info += "<br>SUBTOTAL: T[ST.total_amount]<br>"
+	R.info += "<br>TAX ([ST.tax_applied]): T[round(ST.tax_applied / 100 * ST.total_amount, 1)]<br>"
+	R.info += "<br>TOTAL: T[ST.total_amount + round(ST.tax_applied / 100 * ST.total_amount, 1)]<br>"
 
 	// Stamp de receipt
 	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -485,8 +506,9 @@
 		var/obj/item/weapon/card/id/idcard = W
 		var/datum/money_account/D = get_account(idcard.associated_account_number)
 		if(D)
-			if(D.money >= transaction_total)
-				D.withdraw(transaction_total, "Purchase at [shop_area.institution_name]", shop_area.institution_name)
+			var/amount_to_pay = transaction_total + round(tax / 100 * transaction_total, 1)
+			if(D.money >= amount_to_pay)
+				D.withdraw(amount_to_pay, "Purchase at [shop_area.institution_name]", shop_area.institution_name)
 				var/item/shop_transaction/st = new()
 				st.id = ++shop_area.transactions_counter
 				st.total_amount = transaction_total
@@ -500,6 +522,7 @@
 					shop_area.items_prices.Remove(I)
 				transaction_items = list()
 				transaction_total = 0
+				transaction_paid = 0
 				to_chat(user, "*Beep*")
 			else
 				to_chat(user, "Not enough money.")

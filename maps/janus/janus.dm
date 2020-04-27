@@ -140,8 +140,9 @@
 	#include "janus3_industrial.dmm"
 	#include "janus4_commercial.dmm"
 	#include "janus5_maindeck.dmm"
-	#include "janus6_residential.dmm"
-	#include "janus7_offices.dmm"
+	#include "janus6_mixed.dmm"
+	#include "janus7_residential.dmm"
+	#include "janus8_offices.dmm"
 	#include "z1_admin.dmm"
 	#include "z2_transit.dmm"
 
