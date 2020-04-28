@@ -162,11 +162,15 @@
 		var/obj/item/weapon/card/id/id = H.GetIdCard()
 		if(id)
 			id.icon_state = "gold"
-			id.access = get_all_accesses()
+			id.access = list(access_lifesupport, access_ntgeneral, access_command, access_medical, access_security, access_supply, access_mining, access_co, access_xo,
+					access_ce, access_coo, access_cos, access_cpo, access_workersrep, access_employersrep, access_officeclerks, access_bankstaff, access_bankhighstaff,
+					access_civilian, access_businessmanagement, access_staffmanagement, access_accountmanagement)
 		else
 			id = new/obj/item/weapon/card/id(M);
 			id.icon_state = "gold"
-			id.access = get_all_accesses()
+			id.access = list(access_lifesupport, access_ntgeneral, access_command, access_medical, access_security, access_supply, access_mining, access_co, access_xo,
+					access_ce, access_coo, access_cos, access_cpo, access_workersrep, access_employersrep, access_officeclerks, access_bankstaff, access_bankhighstaff,
+					access_civilian, access_businessmanagement, access_staffmanagement, access_accountmanagement)
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.SetName("[id.registered_name]'s ID Card ([id.assignment])")

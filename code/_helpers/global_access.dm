@@ -303,8 +303,8 @@
 			return global.cameranet;
 		if("can_call_ert")
 			return global.can_call_ert;
-		if("captain_announcement")
-			return global.captain_announcement;
+//		if("captain_announcement")
+//			return global.captain_announcement;
 		if("changelog_hash")
 			return global.changelog_hash;
 		if("channel_color_presets")
@@ -679,22 +679,22 @@
 			return global.priority_air_alarms;
 		if("priority_announcement")
 			return global.priority_announcement;
-		if("priv_all_access")
-			return global.priv_all_access;
+//		if("priv_all_access")
+//			return global.priv_all_access;
 		if("priv_all_access_datums")
 			return global.priv_all_access_datums;
 		if("priv_all_access_datums_id")
 			return global.priv_all_access_datums_id;
 		if("priv_all_access_datums_region")
 			return global.priv_all_access_datums_region;
-		if("priv_centcom_access")
-			return global.priv_centcom_access;
-		if("priv_region_access")
-			return global.priv_region_access;
-		if("priv_station_access")
-			return global.priv_station_access;
-		if("priv_syndicate_access")
-			return global.priv_syndicate_access;
+//		if("priv_centcom_access")
+//			return global.priv_centcom_access;
+//		if("priv_region_access")
+//			return global.priv_region_access;
+//		if("priv_station_access")
+//			return global.priv_station_access;
+//		if("priv_syndicate_access")
+//			return global.priv_syndicate_access;
 		if("prometheans")
 			return global.prometheans;
 		if("protected_objects")
@@ -913,7 +913,7 @@
 			return global.z_levels;
 		if("zone_blocked")
 			return global.zone_blocked;
-		
+
 /proc/writeglobal(which, newval)
 	switch(which)
 		if("ANTAG_FREQS")
@@ -1218,8 +1218,8 @@
 			global.cameranet=newval;
 		if("can_call_ert")
 			global.can_call_ert=newval;
-		if("captain_announcement")
-			global.captain_announcement=newval;
+//		if("captain_announcement")
+//			global.captain_announcement=newval;
 		if("changelog_hash")
 			global.changelog_hash=newval;
 		if("channel_color_presets")
@@ -1594,22 +1594,22 @@
 			global.priority_air_alarms=newval;
 		if("priority_announcement")
 			global.priority_announcement=newval;
-		if("priv_all_access")
-			global.priv_all_access=newval;
+//		if("priv_all_access")
+//			global.priv_all_access=newval;
 		if("priv_all_access_datums")
 			global.priv_all_access_datums=newval;
 		if("priv_all_access_datums_id")
 			global.priv_all_access_datums_id=newval;
 		if("priv_all_access_datums_region")
 			global.priv_all_access_datums_region=newval;
-		if("priv_centcom_access")
-			global.priv_centcom_access=newval;
-		if("priv_region_access")
-			global.priv_region_access=newval;
-		if("priv_station_access")
-			global.priv_station_access=newval;
-		if("priv_syndicate_access")
-			global.priv_syndicate_access=newval;
+//		if("priv_centcom_access")
+//			global.priv_centcom_access=newval;
+//		if("priv_region_access")
+//			global.priv_region_access=newval;
+//		if("priv_station_access")
+//			global.priv_station_access=newval;
+//		if("priv_syndicate_access")
+//			global.priv_syndicate_access=newval;
 		if("prometheans")
 			global.prometheans=newval;
 		if("protected_objects")
@@ -1828,7 +1828,7 @@
 			global.z_levels=newval;
 		if("zone_blocked")
 			global.zone_blocked=newval;
-		
+
 /var/list/_all_globals=list(
 	"ANTAG_FREQS",
 	"BSACooldown",
