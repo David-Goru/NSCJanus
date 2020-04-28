@@ -39,7 +39,7 @@
 	name = "\improper Level Minus Four Hallway"
 	icon_state = "hallF"
 
-	//Maintenance tunnels
+	//Maintenance tunnels, substations & level connections
 /area/maintenance/levelminusfour/north
 	name = "Level Minus Four North Maintenance"
 	icon_state = "fmaint"
@@ -84,10 +84,110 @@
 
 //Level -3 (janus2)
 
+	//Hallways
+/area/hallway/levelminusthree/central
+	name = "\improper Level Minus Three Central Hallway"
+	icon_state = "hallF"
+
+/area/hallway/levelminusthree/row_a
+	name = "\improper Level Minus Three Row-A Hallway"
+	icon_state = "hallF"
+
+/area/hallway/levelminusthree/row_b
+	name = "\improper Level Minus Three Row-B Hallway"
+	icon_state = "hallF"
+
+
+	//Maintenance tunnels, substations & level connections
+/area/maintenance/levelminusthree/north
+	name = "Level Minus Three North Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/levelminusthree/east
+	name = "Level Minus Three East Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/levelminusthree/south
+	name = "Level Minus Three South Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/levelminusthree/central
+	name = "Level Minus Three Central Maintenance"
+	icon_state = "fmaint"
+
+/area/maintenance/levelconnection/minusthree
+	name = "Level Minus Three Connections Shaft"
+	icon_state = "fmaint"
+
+/area/maintenance/substation/levelminusthree
+	name = "Level Minus Three Substation"
+	icon_state = "fmaint"
+
+	//Rooms
+/area/lifesupport/lobby
+	name = "Life Support - Lobby"
+	icon_state = "engineering_foyer"
+
+/area/lifesupport/main_hallway
+	name = "\improper Life Support - Hallway"
+	icon_state = "engineering_foyer"
+	req_access = list(access_engine)
+
+/area/lifesupport/monitoring_room
+	name = "\improper Life Support - Monitoring Room"
+	icon_state = "engine_monitoring"
+	sound_env = SMALL_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/engine_monitoring
+	name = "\improper Life Support - Engine Monitoring"
+	icon_state = "engine_monitoring"
+	sound_env = SMALL_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/smes_room
+	name = "\improper Life Support - Power Management"
+	icon_state = "engineering_foyer"
+	sound_env = SMALL_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/equipment_room
+	name = "\improper Life Support - Equipment Room"
+	icon_state = "engineering_locker"
+	req_access = list(access_engine)
+
+/area/lifesupport/hard_storage
+	name = "\improper Life Support - Hard Storage"
+	icon_state = "engineering_locker"
+	sound_env = LARGE_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/engine_room
+	name = "\improper Life Support - Engine Bay"
+	icon_state = "engine"
+	sound_env = LARGE_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/atmospherics
+	name = "\improper Life Support - Atmospherics"
+	icon_state = "atmos"
+	sound_env = LARGE_ENCLOSED
+	req_access = list(access_engine)
+
+/area/lifesupport/grav_gen
+	name = "\improper Life Support - Gravity Generator"
+	icon_state = "atmos"
+	sound_env = SMALL_ENCLOSED
+	req_access = list(access_engine)
+
+/area/security/checkpoint/levelminusthree
+	name = "\improper Security - Level Minus Three Checkpoint"
+	icon_state = "security"
+
 /area/mining/mineral_processing
 	name = "Mining Processing"
 	icon_state = "mining"
-	req_access = list(list(access_mining)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_mining))
 
 
 
