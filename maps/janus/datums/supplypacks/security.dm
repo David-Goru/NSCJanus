@@ -26,7 +26,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "peacekeeper armor crate"
-	access = access_emergency_armory
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/comarmor
 	name = "Armor - Command"
@@ -35,7 +35,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "command armor crate"
-	access = access_heads
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/nanoarmor
 	name = "Armor - Corporate"
@@ -44,7 +44,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "corporate armor crate"
-	access = access_nanotrasen
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/lightnanoarmor
 	name = "Armor - Corporate light"
@@ -53,7 +53,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/secure
 	containername = "corporate light armor crate"
-	access = access_nanotrasen
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/pistol
 	name = "Weapons - Ballistic sidearms"
@@ -61,7 +61,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "ballistic sidearms crate"
-	access = access_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_ELEVATED
 
 /decl/hierarchy/supply_pack/security/laser
@@ -70,7 +70,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "laser carbines crate"
-	access = access_emergency_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_ELEVATED
 
 /decl/hierarchy/supply_pack/security/laser/shady
@@ -88,7 +88,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "advanced Laser Weapons crate"
-	access = access_emergency_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_HIGH
 
 /decl/hierarchy/supply_pack/security/sniperlaser
@@ -97,7 +97,7 @@
 	cost = 70
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "energy marksman crate"
-	access = access_emergency_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_HIGH
 
 /decl/hierarchy/supply_pack/security/pdw
@@ -106,7 +106,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Ballistic PDW crate"
-	access = access_emergency_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_HIGH
 
 /decl/hierarchy/supply_pack/security/bullpup
@@ -115,7 +115,7 @@
 	cost = 80 //Because 5.56 is OP as fuck right now.
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "bullpup automatic rifle crate"
-	access = access_emergency_armory
+	access = access_security
 	security_level = SUPPLY_SECURITY_HIGH
 
 /decl/hierarchy/supply_pack/security/pistolammo
@@ -149,7 +149,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "holster crate"
-	access = access_solgov_crew
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/securityextragear
 	name = "Gear - Master at Arms equipment"
@@ -188,7 +188,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\improper Chief of Security equipment crate"
-	access = access_hos
+	access = access_security
 
 /decl/hierarchy/supply_pack/security/practicelasers
 	name = "Misc - Practice Laser Carbines"
@@ -196,4 +196,4 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "practice laser carbine crate"
-	access = access_solgov_crew
+	access = access_security

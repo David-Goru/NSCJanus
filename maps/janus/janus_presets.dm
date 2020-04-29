@@ -16,21 +16,21 @@ var/const/NETWORK_NANOTRASEN  = "Petrov"
 /datum/map/janus/get_network_access(var/network)
 	switch(network)
 		if(NETWORK_AQUILA)
-			return access_aquila
+			return access_command
 		if(NETWORK_BRIDGE)
-			return access_heads
+			return access_command
 		if(NETWORK_CALYPSO)
-			return access_expedition_shuttle
+			return access_command
 		if(NETWORK_POD)
-			return access_guppy
+			return access_command
 		if(NETWORK_SUPPLY)
-			return access_mailsorting
+			return access_command
 		if(NETWORK_HANGAR)
-			return access_hangar
+			return access_command
 		if(NETWORK_EXPLO)
-			return access_explorer
+			return access_command
 		if(NETWORK_NANOTRASEN)
-			return access_petrov_security
+			return access_command
 	return get_shared_network_access(network) || ..()
 
 /datum/map/janus
@@ -191,26 +191,26 @@ var/const/NETWORK_ENGINEERING_OUTPOST = "Engineering Outpost"
 /datum/map/proc/get_shared_network_access(var/network)
 	switch(network)
 		if(NETWORK_COMMAND)
-			return access_heads
+			return access_command
 		if(NETWORK_ENGINE, NETWORK_ENGINEERING_OUTPOST)
-			return access_engine
+			return access_command
 
 /datum/map/janus/default_internal_channels()
 	return list(
 		num2text(PUB_FREQ)   = list(),
-		num2text(AI_FREQ)    = list(access_synth),
+		num2text(AI_FREQ)    = list(access_command),
 		num2text(ENT_FREQ)   = list(),
-		num2text(ERT_FREQ)   = list(access_cent_specops),
-		num2text(COMM_FREQ)  = list(access_heads),
-		num2text(ENG_FREQ)   = list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ)   = list(access_medical_equip),
-		num2text(MED_I_FREQ) = list(access_medical_equip),
-		num2text(SEC_FREQ)   = list(access_security),
-		num2text(SEC_I_FREQ) = list(access_security),
-		num2text(SCI_FREQ)   = list(access_tox, access_robotics, access_xenobiology, access_pathfinder),
-		num2text(SUP_FREQ)   = list(access_cargo),
-		num2text(SRV_FREQ)   = list(access_janitor, access_hydroponics),
-		num2text(EXP_FREQ)   = list(access_explorer, access_rd)
+		num2text(ERT_FREQ)   = list(access_command),
+		num2text(COMM_FREQ)  = list(access_command),
+		num2text(ENG_FREQ)   = list(access_command),
+		num2text(MED_FREQ)   = list(access_command),
+		num2text(MED_I_FREQ) = list(access_command),
+		num2text(SEC_FREQ)   = list(access_command),
+		num2text(SEC_I_FREQ) = list(access_command),
+		num2text(SCI_FREQ)   = list(access_command),
+		num2text(SUP_FREQ)   = list(access_command),
+		num2text(SRV_FREQ)   = list(access_command),
+		num2text(EXP_FREQ)   = list(access_command)
 	)
 
 /decl/stock_part_preset/radio/receiver/vent_pump/guppy

@@ -29,7 +29,7 @@
 
 /obj/structure/closet/secure_closet/CO
 	name = "commanding officer's locker"
-	req_access = list(access_captain)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/command/co
 
 /obj/structure/closet/secure_closet/CO/WillContain()
@@ -53,7 +53,7 @@
 
 /obj/structure/closet/secure_closet/XO
 	name = "executive officer's locker"
-	req_access = list(access_hop)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/command/xo
 
 /obj/structure/closet/secure_closet/XO/WillContain()
@@ -81,7 +81,7 @@
 
 /obj/structure/closet/secure_closet/sea
 	name = "senior enlisted advisor's locker"
-	req_access = list(access_senadv)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/command
 
 /obj/structure/closet/secure_closet/sea/WillContain()
@@ -107,7 +107,7 @@
 
 /obj/structure/closet/secure_closet/bridgeofficer
 	name = "bridge officer's locker"
-	req_access = list(access_bridge, access_keycard_auth)
+	req_access = list(access_command, access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/command/bo
 
 /obj/structure/closet/secure_closet/bridgeofficer/WillContain()

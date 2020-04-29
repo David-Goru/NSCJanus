@@ -71,7 +71,7 @@
 
 /obj/structure/closet/secure_closet/engineering_janus
 	name = "engineer's locker"
-	req_access = list(access_engine_equip)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/engineering
 
 /obj/structure/closet/secure_closet/engineering_janus/WillContain()
@@ -97,7 +97,7 @@
 
 /obj/structure/closet/secure_closet/engineering_senior
 	name = "senior engineer's locker"
-	req_access = list(access_seneng)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/engineering/se
 
 /obj/structure/closet/secure_closet/engineering_senior/WillContain()
@@ -126,7 +126,7 @@
 
 /obj/structure/closet/secure_closet/atmos_janus
 	name = "atmospherics equipment locker"
-	req_access = list(access_atmospherics)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/engineering/atmos
 
 /obj/structure/closet/secure_closet/atmos_janus/WillContain()

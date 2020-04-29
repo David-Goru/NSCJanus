@@ -23,7 +23,7 @@
 	icon_state = "ascent"
 	icon_keyboard = "ascent_key"
 	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 
 /obj/machinery/computer/shuttle_control/explore/ascent/two
 	name = "shuttle control console"

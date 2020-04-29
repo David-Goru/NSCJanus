@@ -8,7 +8,7 @@
 
 	matter = list(MATERIAL_STEEL = 50,MATERIAL_GLASS = 50)
 
-	req_access = list(access_engine)
+	req_access = list(access_command)
 
 	var/secure = 0 //if set, then wires will be randomized and bolts will drop if the door is broken
 	var/list/conf_access = list()
@@ -41,12 +41,12 @@
 	for(var/i in ACCESS_REGION_MIN to ACCESS_REGION_MAX) //code/game/jobs/_access_defs.dm
 		var/list/region = list()
 		var/list/accesses = list()
-		for(var/j in get_region_accesses(i))
+		/*for(var/j in get_region_accesses(i))
 			var/list/access = list()
 			access["name"] = get_access_desc(j)
 			access["id"] = j
 			access["req"] = (j in src.conf_access)
-			accesses[++accesses.len] = access
+			accesses[++accesses.len] = access*/
 		region["name"] = get_region_accesses_name(i)
 		region["accesses"] = accesses
 		regions[++regions.len] = region

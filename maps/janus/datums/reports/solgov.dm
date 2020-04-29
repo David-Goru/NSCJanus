@@ -17,7 +17,7 @@
 	add_field(/datum/report_field/pencode_text, "Other Notes")
 	add_field(/datum/report_field/signature, "Signature")
 	add_field(/datum/report_field/options/yes_no, "Approved")
-	set_access(access_edit = access_representative)
+	set_access(access_edit = access_command)
 
 /datum/computer_file/report/recipient/sol/crewman_incident
 	form_name = "SCG-REP-4"
@@ -32,7 +32,7 @@
 	add_field(/datum/report_field/pencode_text, "Description of incident")
 	add_field(/datum/report_field/signature, "Signature")
 	add_field(/datum/report_field/options/yes_no, "Approved")
-	set_access(access_edit = list(access_heads, access_solgov_crew))
+	set_access(access_edit = list(access_command, access_command))
 
 /datum/computer_file/report/recipient/sol/work_visa
 	form_name = "SCG-REP-03b"
@@ -48,4 +48,4 @@
 	temp_field = add_field(/datum/report_field/signature, "Issuer of Work Visa Signature")
 	add_field(/datum/report_field/signature, "Recipient of Work Visa Signature")
 	add_field(/datum/report_field/options/yes_no, "Approved")
-	temp_field.set_access(access_edit = access_representative)
+	temp_field.set_access(access_edit = access_command)

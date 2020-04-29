@@ -6,7 +6,7 @@
 
 /datum/computer_file/report/recipient/sci/anomaly/New()
 	..()
-	set_access(access_research, access_research)
+	set_access(access_command, access_command)
 
 /datum/computer_file/report/recipient/sci/anomaly/generate_fields()
 	..()

@@ -2,7 +2,7 @@
 /obj/machinery/computer/account_database
 	name = "accounts uplink terminal"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
-	var/needed_access = list(list(access_hop, access_captain))
+	var/needed_access = list(list(access_command, access_command))
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card
@@ -13,9 +13,9 @@
 	proc/get_access_level()
 		if (!held_card)
 			return 0
-		if(access_cent_captain in held_card.access)
+		if(access_command in held_card.access)
 			return 2
-		else if(access_hop in held_card.access || (access_captain in held_card.access))
+		else if(access_command in held_card.access || (access_command in held_card.access))
 			return 1
 
 	proc/accounting_letterhead(report_name)

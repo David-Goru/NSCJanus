@@ -24,4 +24,4 @@
 	add_field(/datum/report_field/simple_text, "Ask about any recent sickness", "NOT CHECKED")
 	add_field(/datum/report_field/pencode_text, "Other Notes")
 	add_field(/datum/report_field/signature, "Doctor's Signature")
-	set_access(access_edit = access_medical_equip)
+	set_access(access_edit = access_command)

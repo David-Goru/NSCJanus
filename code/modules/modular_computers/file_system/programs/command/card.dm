@@ -51,31 +51,31 @@
 	data["service_jobs"] = format_jobs(SSjobs.titles_by_department(SRV))
 	data["supply_jobs"] = format_jobs(SSjobs.titles_by_department(SUP))
 	data["civilian_jobs"] = format_jobs(SSjobs.titles_by_department(CIV))
-	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
+	//data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
 	data["all_centcom_access"] = is_centcom ? get_accesses(1) : null
 	data["regions"] = get_accesses()
 
 	if(card_slot && card_slot.stored_card)
-		var/obj/item/weapon/card/id/id_card = card_slot.stored_card
+		//var/obj/item/weapon/card/id/id_card = card_slot.stored_card
 		if(is_centcom)
 			var/list/all_centcom_access = list()
-			for(var/access in get_all_centcom_access())
+			/*for(var/access in get_all_centcom_access())
 				all_centcom_access.Add(list(list(
 					"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp"),
 					"ref" = access,
-					"allowed" = (access in id_card.access) ? 1 : 0)))
+					"allowed" = (access in id_card.access) ? 1 : 0)))*/
 			data["all_centcom_access"] = all_centcom_access
 		else
 			var/list/regions = list()
 			for(var/i = 1; i <= 8; i++)
 				var/list/accesses = list()
-				for(var/access in get_region_accesses(i))
+				/*for(var/access in get_region_accesses(i))
 					if (get_access_desc(access))
 						accesses.Add(list(list(
 							"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 							"ref" = access,
-							"allowed" = (access in id_card.access) ? 1 : 0)))
+							"allowed" = (access in id_card.access) ? 1 : 0)))*/
 
 				regions.Add(list(list(
 					"name" = get_region_accesses_name(i),
@@ -105,7 +105,7 @@
 
 
 /datum/computer_file/program/card_mod/Topic(href, href_list)
-	if(..())
+	/*if(..())
 		return 1
 
 	var/mob/user = usr
@@ -128,7 +128,7 @@
 			if(!authorized(user_id_card))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return
-			if(computer.has_component(PART_PRINTER)) //This option should never be called if there is no printer
+			/*if(computer.has_component(PART_PRINTER)) //This option should never be called if there is no printer
 				if(module.mod_mode)
 					if(can_run(user, 1))
 						var/contents = {"<h4>Access Report</h4>
@@ -143,13 +143,13 @@
 									<u>Access:</u><br>
 								"}
 
-						var/known_access_rights = get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
+						/*var/known_access_rights = get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
 						for(var/A in id_card.access)
 							if(A in known_access_rights)
 								contents += "  [get_access_desc(A)]"
 
 						if(!computer.print_paper(contents,"access report"))
-							to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
+							to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")*/
 							return
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
@@ -158,7 +158,7 @@
 									"}
 					if(!computer.print_paper(contents, "crew manifest ([stationtime2text()])"))
 						to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
-						return
+						return*/
 		if("eject")
 			var/obj/item/weapon/stock_parts/computer/card_slot/card_slot = computer.get_component(PART_CARD)
 			if(computer.get_inserted_id())
@@ -208,7 +208,7 @@
 						id_card.assignment = temp_t
 				else
 					var/list/access = list()
-					if(module.is_centcom)
+					/*if(module.is_centcom)
 						access = get_centcom_access(t1)
 					else
 						var/datum/job/jobdatum = SSjobs.get_by_title(t1)
@@ -216,7 +216,7 @@
 							to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
 							return
 
-						access = jobdatum.get_access()
+						access = jobdatum.get_access()*/
 
 					remove_nt_access(id_card)
 					apply_access(id_card, access)
@@ -226,27 +226,28 @@
 				callHook("reassign_employee", list(id_card))
 		if("access")
 			if(href_list["allowed"] && computer && can_run(user, 1) && id_card)
-				var/access_type = href_list["access_target"]
-				var/access_allowed = text2num(href_list["allowed"])
-				if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
+				//var/access_type = href_list["access_target"]
+				//var/access_allowed = text2num(href_list["allowed"])
+				/*if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
 					for(var/access in user_id_card.access)
 						var/region_type = get_access_region_by_id(access_type)
 						if(access in GLOB.using_map.access_modify_region[region_type])
 							id_card.access -= access_type
 							if(!access_allowed)
 								id_card.access += access_type
-							break
+							break*/
 	if(id_card)
 		id_card.SetName(text("[id_card.registered_name]'s ID Card ([id_card.assignment])"))
 
-	SSnano.update_uis(NM)
+	SSnano.update_uis(NM)*/
 	return 1
 
 /datum/computer_file/program/card_mod/proc/remove_nt_access(var/obj/item/weapon/card/id/id_card)
-	id_card.access -= get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
+	//id_card.access -= get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
 
 /datum/computer_file/program/card_mod/proc/apply_access(var/obj/item/weapon/card/id/id_card, var/list/accesses)
 	id_card.access |= accesses
 
 /datum/computer_file/program/card_mod/proc/authorized(var/obj/item/weapon/card/id/id_card)
-	return id_card && (access_change_ids in id_card.access)
+	//return id_card && (access_change_ids in id_card.access)
+	return 0

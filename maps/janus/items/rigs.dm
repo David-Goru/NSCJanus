@@ -36,7 +36,7 @@
 				   /obj/item/device/suit_cooling_unit,
 				   /obj/item/weapon/storage/secure/briefcase)
 
-	req_access = list(access_bridge)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command
 	light_overlay = "helmet_light_dual"
@@ -91,7 +91,7 @@
 	boot_type = /obj/item/clothing/shoes/magboots/rig/command
 	glove_type = /obj/item/clothing/gloves/rig/command
 
-	req_access = list(access_hop)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command/xo
 	icon_state = "command_XO_rig"
@@ -131,7 +131,7 @@
 	boot_type = /obj/item/clothing/shoes/magboots/rig/command
 	glove_type = /obj/item/clothing/gloves/rig/command
 
-	req_access = list(access_captain)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command/co
 	icon_state = "command_CO_rig"
@@ -171,7 +171,7 @@
 				   /obj/item/stack/medical,
 				   /obj/item/roller)
 
-	req_access = list(access_cmo)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command/medical
 	icon_state = "command_med_rig"
@@ -220,7 +220,7 @@
 				  /obj/item/device/suit_cooling_unit,
 				  /obj/item/weapon/melee/baton)
 
-	req_access = list(access_hos)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command/security
 	icon_state = "command_sec_rig"
@@ -277,7 +277,7 @@
 				   /obj/item/weapon/storage/bag/fossils,
 				   /obj/item/rig_module/grenade_launcher/light)
 
-	req_access = list(access_rd)
+	req_access = list(access_command)
 
 /obj/item/clothing/head/helmet/space/rig/command/science
 	icon_state = "command_sci_rig"

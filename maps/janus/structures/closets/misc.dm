@@ -26,7 +26,7 @@
 
 /obj/structure/closet/secure_closet/liaison
 	name = "\improper corporate liaison's locker"
-	req_access = list(access_liaison)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/corporate/liaison
 
 /obj/structure/closet/secure_closet/liaison/WillContain()
@@ -57,7 +57,7 @@
 
 /obj/structure/closet/secure_closet/bodyguard
 	name = "\improper corporate protection locker"
-	req_access = list(access_sec_guard)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/corporate/bodyguard
 
 /obj/structure/closet/secure_closet/bodyguard/WillContain()
@@ -85,7 +85,7 @@
 
 /obj/structure/closet/secure_closet/representative
 	name = "\improper Sol Central Government representative's locker"
-	req_access = list(access_representative)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/sol/rep
 
 /obj/structure/closet/secure_closet/representative/WillContain()
@@ -109,7 +109,7 @@
 
 /obj/structure/closet/secure_closet/crew
 	name = "crew equipment locker"
-	req_access = list(access_solgov_crew)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/sol
 
 /obj/structure/closet/secure_closet/crew/WillContain()
@@ -122,13 +122,13 @@
 
 /obj/structure/closet/secure_closet/crew/research
 	name = "research equipment locker"
-	req_access = list(access_nanotrasen)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/corporate
 
 
 /obj/structure/closet/secure_closet/guncabinet/sidearm
 	name = "sidearm cabinet"
-	req_access = list(list(access_armory,access_emergency_armory,access_hos,access_hop,access_ce,access_cmo,access_rd,access_senadv))
+	req_access = list(list(access_command,access_command))
 
 /obj/structure/closet/secure_closet/guncabinet/sidearm/WillContain()
 	return list(
@@ -154,7 +154,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/PPE
 	name = "Bridge PPE cabinet"
-	req_access = list(list(access_armory,access_emergency_armory,access_hos,access_hop,access_ce,access_cmo,access_rd,access_senadv))
+	req_access = list(list(access_command,access_command))
 
 /obj/structure/closet/secure_closet/guncabinet/PPE/WillContain()
 	return list(

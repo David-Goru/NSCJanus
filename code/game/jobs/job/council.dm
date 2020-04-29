@@ -18,6 +18,19 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+
+	min_skill = list(   SKILL_BUREAUCRACY = SKILL_ADEPT,
+	                    SKILL_COMPUTER    = SKILL_BASIC,
+	                    SKILL_PILOT       = SKILL_BASIC)
+
+	max_skill = list(   SKILL_PILOT       = SKILL_MAX,
+	                    SKILL_SCIENCE     = SKILL_MAX)
+	skill_points = 30
+
+/datum/job/colony_overseer/get_description_blurb()
+	return "Description."
+
+
 /datum/job/executive_overseer
 	title = "Executive Overseer"
 	department = ""
@@ -37,6 +50,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+/datum/job/executive_overseer/get_description_blurb()
+	return "Description."
+
 /datum/job/chief_people_officer
 	title = "Chief People Officer"
 	department = ""
@@ -51,6 +67,9 @@
 	economic_power = 20
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
+
+/datum/job/chief_people_officer/get_description_blurb()
+	return "Description."
 
 /datum/job/chief_financial_officer
 	title = "Chief Financial Officer"
@@ -69,6 +88,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+/datum/job/chief_financial_officer/get_description_blurb()
+	return "Description."
+
 /datum/job/chief_of_security
 	title = "Chief of Security"
 	department = ""
@@ -83,6 +105,9 @@
 	economic_power = 20
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
+
+/datum/job/chief_of_security/get_description_blurb()
+	return "Description."
 
 /datum/job/chief_of_operations
 	title = "Chief of Operations"
@@ -99,6 +124,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+/datum/job/chief_of_operations/get_description_blurb()
+	return "Description."
+
 /datum/job/chief_engineer
 	title = "Chief Engineer"
 	department = ""
@@ -113,6 +141,9 @@
 	economic_power = 20
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
+
+/datum/job/chief_engineer/get_description_blurb()
+	return "Description."
 
 /datum/job/workers_representative
 	title = "Workers' Representative"
@@ -129,6 +160,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
+/datum/job/workers_representative/get_description_blurb()
+	return "Description."
+
 /datum/job/employers_representative
 	title = "Employer's Representative"
 	department = ""
@@ -143,3 +177,6 @@
 	economic_power = 20
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
+
+/datum/job/employers_representative/get_description_blurb()
+	return "Description."

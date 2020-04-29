@@ -27,7 +27,7 @@
 
 /obj/structure/closet/secure_closet/CMO_janus
 	name = "chief medical officer's locker"
-	req_access = list(access_cmo)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/medical/cmo
 
 /obj/structure/closet/secure_closet/CMO_janus/WillContain()
@@ -62,7 +62,7 @@
 
 /obj/structure/closet/secure_closet/medical_janussenior
 	name = "physician's locker"
-	req_access = list(access_senmed)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/medical/physician
 
 /obj/structure/closet/secure_closet/medical_janussenior/WillContain()
@@ -91,7 +91,7 @@
 
 /obj/structure/closet/secure_closet/medical_janus
 	name = "medical technician's locker"
-	req_access = list(access_medical_equip)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/medical
 
 /obj/structure/closet/secure_closet/medical_janus/WillContain()

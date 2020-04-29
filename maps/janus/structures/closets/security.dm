@@ -31,7 +31,7 @@
 
 /obj/structure/closet/secure_closet/security_janus
 	name = "master at arms' locker"
-	req_access = list(access_brig)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/security
 
 /obj/structure/closet/secure_closet/security_janus/WillContain()
@@ -64,7 +64,7 @@
 
 /obj/structure/closet/secure_closet/cos
 	name = "chief of security's locker"
-	req_access = list(access_hos)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/security/hos
 
 /obj/structure/closet/secure_closet/cos/WillContain()
@@ -101,7 +101,7 @@
 
 /obj/structure/closet/secure_closet/brigchief
 	name = "brig chief's locker"
-	req_access = list(access_armory)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/security/warden
 
 /obj/structure/closet/secure_closet/brigchief/WillContain()
@@ -133,7 +133,7 @@
 
 /obj/structure/closet/secure_closet/forensics
 	name = "forensics technician's locker"
-	req_access = list(access_forensics_lockers)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/security/forensics
 
 /obj/structure/closet/secure_closet/forensics/WillContain()

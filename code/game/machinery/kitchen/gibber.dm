@@ -6,7 +6,7 @@
 	icon_state = "grinder"
 	density = 1
 	anchored = 1
-	req_access = list(access_kitchen,access_morgue)
+	req_access = list(access_command,access_command)
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0
@@ -64,12 +64,12 @@
 	return 1
 
 /obj/machinery/gibber/components_are_accessible(path)
-	return !operating && ..()	
+	return !operating && ..()
 
 /obj/machinery/gibber/cannot_transition_to(state_path, mob/user)
 	if(operating)
 		return SPAN_NOTICE("You must wait for \the [src] to finish operating first!")
-	return ..()	
+	return ..()
 
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
 	if(!operating)

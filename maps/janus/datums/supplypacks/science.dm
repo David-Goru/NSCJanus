@@ -6,7 +6,7 @@
 	cost = 120
 	containername = "excavation voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/science/voidsuit_mining
 	name = "EVA - Mining voidsuit"
@@ -16,7 +16,7 @@
 	cost = 120
 	containername = "mining voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/science/voidsuit_pilot
 	name = "EVA - Pilot voidsuit"
@@ -26,7 +26,7 @@
 	cost = 120
 	containername = "pilot voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/science/voidsuit_exploration
 	name = "EVA - Exploration voidsuit"
@@ -36,7 +36,7 @@
 	cost = 120
 	containername = "exploration voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_explorer
+	access = access_command
 
 /decl/hierarchy/supply_pack/operations/voidsuit
 	name = "EVA - Excavation voidsuit"
@@ -46,7 +46,7 @@
 	cost = 120
 	containername = "excavation voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/operations/voidsuit_mining
 	name = "EVA - Mining voidsuit"
@@ -56,7 +56,7 @@
 	cost = 120
 	containername = "mining voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/operations/voidsuit_pilot
 	name = "EVA - Pilot voidsuit"
@@ -66,7 +66,7 @@
 	cost = 120
 	containername = "pilot voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_nanotrasen
+	access = access_command
 
 /decl/hierarchy/supply_pack/operations/voidsuit_exploration
 	name = "EVA - Exploration voidsuit"
@@ -76,7 +76,7 @@
 	cost = 120
 	containername = "exploration voidsuit crate"
 	containertype = /obj/structure/closet/crate/secure/large
-	access = access_explorer
+	access = access_command
 
 /decl/hierarchy/supply_pack/hydroponics/exoticseeds
 	contains = list(/obj/item/seeds/replicapod = 2,
@@ -90,7 +90,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "ballistic launcher crate"
-	access = access_pathfinder
+	access = access_command
 
 /decl/hierarchy/supply_pack/science/nets
 	name = "Ammunition - Utility Shells"
@@ -98,7 +98,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "utlity shells crate"
-	access = access_pathfinder
+	access = access_command
 
 /decl/hierarchy/supply_pack/science/exploration_extragear
 	name = "Gear - Exploration equipment"
@@ -115,4 +115,4 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "exploration equipment crate"
-	access = access_explorer
+	access = access_command

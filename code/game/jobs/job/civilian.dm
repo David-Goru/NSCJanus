@@ -12,6 +12,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/civilian/get_description_blurb()
+	return "Description."
+
 /datum/job/contractor
 	title = "Contractor"
 	department = ""
@@ -26,6 +29,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/contractor/get_description_blurb()
+	return "Description."
+
 /datum/job/visitor
 	title = "Visitor"
 	department = ""
@@ -39,3 +45,6 @@
 	minimal_access = list()
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/visitor/get_description_blurb()
+	return "Description."

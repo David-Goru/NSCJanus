@@ -339,12 +339,12 @@ var/const/NO_EMAG_ACT = -50
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
 	item_state = "silver_id"
-	job_access_type = /datum/job/hop
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
-	job_access_type = /datum/job/captain
+	job_access_type = /datum/job/colony_overseer
 	color = "#d4c780"
 	extra_details = list("goldstripe")
 
@@ -353,7 +353,7 @@ var/const/NO_EMAG_ACT = -50
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
-	access = list(access_syndicate, access_external_airlocks)
+	access = list(access_command, access_command)
 	color = COLOR_RED_GRAY
 	detail_color = COLOR_GRAY40
 
@@ -366,7 +366,7 @@ var/const/NO_EMAG_ACT = -50
 	detail_color = COLOR_AMBER
 
 /obj/item/weapon/card/id/captains_spare/New()
-	access = get_all_station_access()
+	//access = get_all_station_access()
 	..()
 
 /obj/item/weapon/card/id/synthetic
@@ -377,7 +377,7 @@ var/const/NO_EMAG_ACT = -50
 	detail_color = COLOR_AMBER
 
 /obj/item/weapon/card/id/synthetic/New()
-	access = get_all_station_access() + access_synth
+	//access = get_all_station_access() + access_synth
 	..()
 
 /obj/item/weapon/card/id/centcom
@@ -390,12 +390,12 @@ var/const/NO_EMAG_ACT = -50
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/centcom/New()
-	access = get_all_centcom_access()
+	//access = get_all_centcom_access()
 	..()
 
 /obj/item/weapon/card/id/centcom/station/New()
 	..()
-	access |= get_all_station_access()
+	//access |= get_all_station_access()
 
 /obj/item/weapon/card/id/centcom/ERT
 	name = "\improper Emergency Response Team ID"
@@ -403,7 +403,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/centcom/ERT/New()
 	..()
-	access |= get_all_station_access()
+	//access |= get_all_station_access()
 
 /obj/item/weapon/card/id/foundation_civilian
 	name = "operant registration card"
@@ -444,7 +444,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/foundation/New()
 	..()
-	access |= get_all_station_access()
+	//access |= get_all_station_access()
 
 /obj/item/weapon/card/id/all_access
 	name = "\improper Administrator's spare ID"
@@ -455,96 +455,96 @@ var/const/NO_EMAG_ACT = -50
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/all_access/New()
-	access = get_access_ids()
+	//access = get_access_ids()
 	..()
 
 // Department-flavor IDs
 /obj/item/weapon/card/id/medical
 	name = "identification card"
 	desc = "A card issued to medical staff."
-	job_access_type = /datum/job/doctor
+	job_access_type = /datum/job/civilian
 	detail_color = COLOR_PALE_BLUE_GRAY
 
 /obj/item/weapon/card/id/medical/chemist
-	job_access_type = /datum/job/chemist
+	job_access_type = /datum/job/contractor
 
 /obj/item/weapon/card/id/medical/geneticist
-	job_access_type = /datum/job/geneticist
+	job_access_type = /datum/job/visitor
 
 /obj/item/weapon/card/id/medical/psychiatrist
-	job_access_type = /datum/job/psychiatrist
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/medical/paramedic
-	job_access_type = /datum/job/Paramedic
+	job_access_type = /datum/job/administration_clerk
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
-	job_access_type = /datum/job/cmo
+	job_access_type = /datum/job/colony_overseer
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
 	desc = "A card issued to security staff."
-	job_access_type = /datum/job/officer
+	job_access_type = /datum/job/colony_overseer
 	color = COLOR_OFF_WHITE
 	detail_color = COLOR_MAROON
 
 /obj/item/weapon/card/id/security/warden
-	job_access_type = /datum/job/warden
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/security/detective
-	job_access_type = /datum/job/detective
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
-	job_access_type = /datum/job/hos
+	job_access_type = /datum/job/colony_overseer
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
 	desc = "A card issued to engineering staff."
-	job_access_type = /datum/job/engineer
+	job_access_type = /datum/job/colony_overseer
 	detail_color = COLOR_SUN
 
 /obj/item/weapon/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
-	job_access_type = /datum/job/chief_engineer
+	job_access_type = /datum/job/colony_overseer
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
 	desc = "A card issued to science staff."
-	job_access_type = /datum/job/scientist
+	job_access_type = /datum/job/colony_overseer
 	detail_color = COLOR_PALE_PURPLE_GRAY
 
 /obj/item/weapon/card/id/science/xenobiologist
-	job_access_type = /datum/job/xenobiologist
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/science/roboticist
-	job_access_type = /datum/job/roboticist
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
-	job_access_type = /datum/job/rd
+	job_access_type = /datum/job/colony_overseer
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/cargo
 	name = "identification card"
 	desc = "A card issued to cargo staff."
-	job_access_type = /datum/job/cargo_tech
+	job_access_type = /datum/job/colony_overseer
 	detail_color = COLOR_BROWN
 
 /obj/item/weapon/card/id/cargo/mining
-	job_access_type = /datum/job/mining
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
-	job_access_type = /datum/job/qm
+	job_access_type = /datum/job/colony_overseer
 	extra_details = list("goldstripe")
 
 /obj/item/weapon/card/id/civilian
@@ -554,26 +554,26 @@ var/const/NO_EMAG_ACT = -50
 	detail_color = COLOR_CIVIE_GREEN
 
 /obj/item/weapon/card/id/civilian/bartender
-	job_access_type = /datum/job/bartender
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/chef
-	job_access_type = /datum/job/chef
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/botanist
-	job_access_type = /datum/job/hydro
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/janitor
-	job_access_type = /datum/job/janitor
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/librarian
-	job_access_type = /datum/job/librarian
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/internal_affairs_agent
-	job_access_type = /datum/job/lawyer
+	job_access_type = /datum/job/colony_overseer
 	detail_color = COLOR_NAVY_BLUE
 
 /obj/item/weapon/card/id/civilian/chaplain
-	job_access_type = /datum/job/chaplain
+	job_access_type = /datum/job/colony_overseer
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
@@ -583,6 +583,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/merchant
 	name = "identification card"
 	desc = "A card issued to Merchants, indicating their right to sell and buy goods."
-	access = list(access_merchant)
+	access = list(access_command)
 	color = COLOR_OFF_WHITE
 	detail_color = COLOR_BEIGE

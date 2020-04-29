@@ -3,7 +3,7 @@
 	desc = "A computer used to control a nearby holodeck."
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
-	var/lock_access = list(access_bridge)
+	var/lock_access = list(access_command)
 	var/islocked = 0
 
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem

@@ -15,8 +15,8 @@
 	var/progress = 0
 	var/target_progress = 300
 	var/datum/access/target_access = null
-	var/list/restricted_access_codes = list(access_change_ids) // access codes that are not hackable due to balance reasons
-	var/list/skill_restricted_access_codes_master = list(access_network)
+	var/list/restricted_access_codes = list() // access codes that are not hackable due to balance reasons
+	var/list/skill_restricted_access_codes_master = list()
 
 /datum/computer_file/program/access_decrypter/on_shutdown(var/forced)
 	reset()
@@ -42,7 +42,7 @@
 
 	progress += get_speed()
 
-	if(progress >= target_progress)
+	/*if(progress >= target_progress)
 		if(prob(20 * max(SKILL_ADEPT - operator_skill, 0))) // Oops
 			var/list/valid_access_values = get_all_station_access()
 			valid_access_values -= restricted_access_codes
@@ -56,7 +56,7 @@
 			ntnet_global.intrusion_detection_alarm = 1
 		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [target_access.desc]"
 		target_access = null
-		reset()
+		reset()*/
 
 /datum/computer_file/program/access_decrypter/Topic(href, href_list)
 	if(..())
@@ -133,11 +133,11 @@
 			strings.Add(string)
 		data["dos_strings"] = strings
 	else if(RFID && RFID.stored_card)
-		var/obj/item/weapon/card/id/id_card = RFID.stored_card
+		//var/obj/item/weapon/card/id/id_card = RFID.stored_card
 		var/list/regions = list()
 		for(var/i = ACCESS_REGION_MIN; i <= ACCESS_REGION_MAX; i++)
-			var/list/accesses = list()
-			for(var/access in get_region_accesses(i))
+			//var/list/accesses = list()
+			/*for(var/access in get_region_accesses(i))
 				if (get_access_desc(access))
 					accesses.Add(list(list(
 						"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
@@ -147,7 +147,7 @@
 
 			regions.Add(list(list(
 				"name" = get_region_accesses_name(i),
-				"accesses" = accesses)))
+				"accesses" = accesses)))*/
 		data["regions"] = regions
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

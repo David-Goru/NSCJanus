@@ -1,7 +1,7 @@
 // See specific map job files for valid jobs. They use types so cannot be compiled at this level.
 /decl/cultural_info/culture/nabber
 	name = CULTURE_NABBER_CMINUS
-	
+
 	description = "You have been trained to Xynergy Grade PLACEHOLDER."
 	language = LANGUAGE_NABBER
 	secondary_langs = list(
@@ -10,7 +10,7 @@
 		LANGUAGE_GUTTER
 	)
 	var/list/valid_jobs = list()
-	var/list/hidden_valid_jobs = list(/datum/job/ai, /datum/job/cyborg)
+	var/list/hidden_valid_jobs = list()
 	var/title_suffix
 
 /decl/cultural_info/culture/nabber/get_formal_name_suffix()
@@ -42,14 +42,14 @@
 
 /decl/cultural_info/culture/nabber/c
 	name = CULTURE_NABBER_C
-	valid_jobs = list(/datum/job/janitor)
+	valid_jobs = list()
 
 /decl/cultural_info/culture/nabber/c/plus
 	name = CULTURE_NABBER_CPLUS
 
 /decl/cultural_info/culture/nabber/b
 	name = CULTURE_NABBER_B
-	valid_jobs = list(/datum/job/bartender, /datum/job/chef)
+	valid_jobs = list()
 
 /decl/cultural_info/culture/nabber/b/minus
 	name = CULTURE_NABBER_BMINUS
@@ -59,7 +59,7 @@
 
 /decl/cultural_info/culture/nabber/a
 	name = CULTURE_NABBER_A
-	valid_jobs = list(/datum/job/chemist, /datum/job/roboticist)
+	valid_jobs = list()
 
 /decl/cultural_info/culture/nabber/a/minus
 	name = CULTURE_NABBER_AMINUS

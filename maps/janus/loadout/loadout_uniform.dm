@@ -13,7 +13,7 @@
 	allowed_roles = CASUAL_ROLES
 
 /datum/gear/uniform/roboticist_skirt
-	allowed_roles = list(/datum/job/roboticist)
+	allowed_roles = list()
 
 /datum/gear/uniform/suit
 	allowed_roles = FORMAL_ROLES
@@ -71,13 +71,13 @@
 	allowed_roles = ENGINEERING_ROLES
 
 /datum/gear/uniform/corp_overalls
-	allowed_roles = list(/datum/job/mining, /datum/job/scientist_assistant)
+	allowed_roles = list()
 
 /datum/gear/uniform/corp_flight
-	allowed_roles = list(/datum/job/nt_pilot)
+	allowed_roles = list()
 
 /datum/gear/uniform/corp_exec
-	allowed_roles = list(/datum/job/liaison)
+	allowed_roles = list()
 
 /datum/gear/uniform/corp_exec_jacket
-	allowed_roles = list(/datum/job/liaison, /datum/job/bodyguard)
+	allowed_roles = list()

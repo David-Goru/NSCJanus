@@ -31,7 +31,7 @@
 
 	if(maint_all_access)
 		L = L.Copy()
-		L |= access_maint_tunnels
+		L |= access_command
 
 	return has_access(R, L)
 

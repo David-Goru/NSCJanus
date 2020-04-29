@@ -31,19 +31,19 @@
 	display_name = "fleet utilty cover"
 	path = /obj/item/clothing/head/solgov/utility/fleet
 	cost = 0
-	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_branches = list()
 
 /datum/gear/head/fleetcap
 	display_name = "fleet cap"
 	path = /obj/item/clothing/head/soft/solgov/fleet
 	cost = 0
-	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_branches = list()
 
 /datum/gear/head/echat
 	display_name = "EC cap"
 	path = /obj/item/clothing/head/soft/solgov/expedition
 	cost = 0
-	allowed_branches = list(/datum/mil_branch/expeditionary_corps)
+	allowed_branches = list()
 
 /datum/gear/head/surgical
 	allowed_roles = STERILE_ROLES
@@ -89,7 +89,7 @@
 	display_name = "Fleet branch beret selection"
 	description = "A beret denoting service in one of the fleets within the SCG Fleet."
 	path = /obj/item/clothing/head/beret/solgov/fleet/branch
-	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_branches = list()
 
 /datum/gear/head/fleetberet/New()
 	..()
@@ -105,7 +105,7 @@
 	display_name = "EC sections beret selection"
 	description = "A beret denoting service in one of the branches within the SCG EC."
 	path = /obj/item/clothing/head/beret/solgov/expedition/branch
-	allowed_branches = list(/datum/mil_branch/expeditionary_corps)
+	allowed_branches = list()
 
 /datum/gear/head/ECberet/New()
 	..()

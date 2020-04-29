@@ -2,7 +2,7 @@
 	name = "\improper Ascent Seedship"
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED
 	base_turf = /turf/space
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 
 /area/ship/ascent/bridge
 	name = "\improper Ascent Seedship - Command Chamber"

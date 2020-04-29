@@ -12,6 +12,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/administration_clerk/get_description_blurb()
+	return "Description."
+
 /datum/job/colonial_bank_director
 	title = "Colonial Bank Director"
 	department = ""
@@ -25,6 +28,9 @@
 	minimal_access = list(access_ntgeneral, access_civilian, access_bankstaff, access_bankhighstaff)
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/colonial_bank_director/get_description_blurb()
+	return "Description."
 
 /datum/job/colonial_bank_deputy_director
 	title = "Colonial Bank Deputy Director"
@@ -40,6 +46,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/colonial_bank_deputy_director/get_description_blurb()
+	return "Description."
+
 /datum/job/colonial_bank_teller
 	title = "Colonial Bank Teller"
 	department = ""
@@ -53,6 +62,9 @@
 	minimal_access = list(access_ntgeneral, access_civilian, access_bankstaff)
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/colonial_bank_teller/get_description_blurb()
+	return "Description."
 
 /datum/job/facility_guard
 	title = "Facility Guard"
@@ -68,6 +80,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/facility_guard/get_description_blurb()
+	return "Description."
+
 /datum/job/life_support_technician
 	title = "Life Support Technician"
 	department = ""
@@ -81,6 +96,9 @@
 	minimal_access = list(access_ntgeneral, access_civilian, access_lifesupport)
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/life_support_technician/get_description_blurb()
+	return "Description."
 
 /datum/job/pysician
 	title = "Physician"
@@ -96,6 +114,9 @@
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 
+/datum/job/pysician/get_description_blurb()
+	return "Description."
+
 /datum/job/supply_technician
 	title = "Supply Technician"
 	department = ""
@@ -109,3 +130,6 @@
 	minimal_access = list(access_ntgeneral, access_civilian, access_supply, access_mining)
 	//alt_titles = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/supply_technician/get_description_blurb()
+	return "Description."

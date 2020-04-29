@@ -78,7 +78,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/police
 	name = "police tape"
 	desc = "A length of police tape.  Do not cross."
-	req_access = list(access_security)
+	req_access = list(access_command)
 	color = COLOR_RED
 
 /obj/item/taperoll/engineering
@@ -93,7 +93,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/engineering
 	name = "engineering tape"
 	desc = "A length of engineering tape. Better not cross it."
-	req_access = list(list(access_engine,access_atmospherics))
+	req_access = list(list(access_command,access_command))
 	color = COLOR_ORANGE
 
 /obj/item/taperoll/atmos
@@ -105,7 +105,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/atmos
 	name = "atmospherics tape"
 	desc = "A length of atmospherics tape. Better not cross it."
-	req_access = list(list(access_engine,access_atmospherics))
+	req_access = list(list(access_command,access_command))
 	color = COLOR_BLUE_LIGHT
 	icon_base = "stripetape"
 	detail_overlay = "stripes"
@@ -120,7 +120,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/research
 	name = "research tape"
 	desc = "A length of research tape. Better not cross it."
-	req_access = list(access_research)
+	req_access = list(access_command)
 	color = COLOR_WHITE
 
 /obj/item/taperoll/medical
@@ -132,7 +132,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/medical
 	name = "medical tape"
 	desc = "A length of medical tape. Better not cross it."
-	req_access = list(access_medical)
+	req_access = list(access_command)
 	icon_base = "stripetape"
 	detail_overlay = "stripes"
 	detail_color = COLOR_PALE_BLUE_GRAY

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "close"
 
-	req_access = list(access_captain, access_bridge)
+	req_access = list(access_command, access_command)
 
 	var/active = 0          // PLEASE HOLD.
 	var/safeties = 1        // The cycler won't start with a living thing inside it unless safeties are off.
@@ -138,7 +138,7 @@
 			return
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		helmet = I
-		
+
 		updateUsrDialog()
 		return
 

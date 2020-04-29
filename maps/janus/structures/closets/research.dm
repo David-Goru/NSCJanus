@@ -18,7 +18,7 @@
 
 /obj/structure/closet/secure_closet/RD_janus
 	name = "chief science officer's locker"
-	req_access = list(access_rd)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/science/cso
 
 /obj/structure/closet/secure_closet/RD_janus/WillContain()
@@ -49,7 +49,7 @@
 
 /obj/structure/closet/secure_closet/secure_closet/xenoarchaeologist_janus
 	name = "xenoarchaeologist's locker"
-	req_access = list(access_xenoarch)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/science
 
 /obj/structure/closet/secure_closet/secure_closet/xenoarchaeologist_janus/WillContain()
@@ -79,7 +79,7 @@
 
 /obj/structure/closet/secure_closet/scientist_janus
 	name = "researcher's locker"
-	req_access = list(access_research)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/science
 
 /obj/structure/closet/secure_closet/scientist_janus/WillContain()
@@ -107,7 +107,7 @@
 
 /obj/structure/closet/secure_closet/guard
 	name = "security guard's locker"
-	req_access = list(access_sec_guard)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/science
 
 /obj/structure/closet/secure_closet/guard/WillContain()
@@ -146,7 +146,7 @@
 
 /obj/structure/closet/secure_closet/ec_scientist
 	name = "scientist locker"
-	req_access = list(access_research)
+	req_access = list(access_command)
 	closet_appearance = /decl/closet_appearance/secure_closet/janus/science
 
 /obj/structure/closet/secure_closet/ec_scientist/WillContain()

@@ -113,7 +113,7 @@ Subtypes
 	name = "relays"
 	man_entry = list("Format: relays", "Gives the number of active relays found on the network.")
 	pattern = "^relays$"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/relays/proper_input_entered(text, mob/user, terminal)
 	return "Number of relays found: [ntnet_global.relays.len]"
@@ -122,7 +122,7 @@ Subtypes
 	name = "banned"
 	man_entry = list("Format: banned", "Lists currently banned network ids.")
 	pattern = "^banned$"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/banned/proper_input_entered(text, mob/user, terminal)
 	. = list()
@@ -133,7 +133,7 @@ Subtypes
 	name = "status"
 	man_entry = list("Format: status", "Reports network status information.")
 	pattern = "^status$"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/status/proper_input_entered(text, mob/user, terminal)
 	. = list()
@@ -146,7 +146,7 @@ Subtypes
 	name = "locate"
 	man_entry = list("Format: locate nid", "Attempts to locate the device with the given nid by triangulating via relays.")
 	pattern = "locate"
-	req_access = list(access_network)
+	req_access = list(access_command)
 	skill_needed = SKILL_PROF
 
 /datum/terminal_command/locate/proper_input_entered(text, mob/user, datum/terminal/terminal)
@@ -166,7 +166,7 @@ Subtypes
 	name = "ping"
 	man_entry = list("Format: ping nid", "Checks connection to the given nid.")
 	pattern = "^ping"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/ping/proper_input_entered(text, mob/user, datum/terminal/terminal)
 	. = list("pinging ...")
@@ -188,7 +188,7 @@ Subtypes
 	name = "ssh"
 	man_entry = list("Format: ssh nid", "Opens a remote terminal at the location of nid, if a valid device nid is specified.")
 	pattern = "^ssh"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/ssh/proper_input_entered(text, mob/user, datum/terminal/terminal)
 	if(istype(terminal, /datum/terminal/remote))
@@ -222,7 +222,7 @@ Subtypes
 		"It is recommended that the user ensure that the target device is accessible."
 	)
 	pattern = "^proxy"
-	req_access = list(access_network)
+	req_access = list(access_command)
 
 /datum/terminal_command/proxy/proper_input_entered(text, mob/user, datum/terminal/terminal)
 	var/datum/extension/interactive/ntos/comp = terminal.computer

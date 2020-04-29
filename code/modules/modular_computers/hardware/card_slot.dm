@@ -37,12 +37,12 @@
 				var/list_of_accesses = list()
 				for(var/access_id in access_list)
 					if(check_functionality()) // Read the access, or show "RD_ERR"
-						var/datum/access/access_information = get_access_by_id(access_id)
-						var/access_type = access_information.access_type
+						//var/datum/access/access_information = get_access_by_id(access_id)
+						/*var/access_type = access_command.access_type
 						if(access_type == ACCESS_TYPE_NONE || access_type == ACCESS_TYPE_SYNDICATE || access_type == ACCESS_TYPE_CENTCOM) // Don't elaborate on these access types.
 							list_of_accesses += "UNKNOWN" // "UNKNOWN"
 						else
-							list_of_accesses += uppertext(access_information.desc)
+							list_of_accesses += uppertext(access_information.desc)*/
 					else
 						list_of_accesses += "RD_ERR"
 				. += jointext(list_of_accesses, ", ") + "\n" // Should append a proper, comma separated list.

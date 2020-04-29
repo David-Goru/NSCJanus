@@ -46,7 +46,7 @@
 /obj/machinery/suit_cycler/exploration
 	name = "Exploration suit cycler"
 	model_text = "Exploration"
-	req_access = list(access_explorer)
+	req_access = list(access_command)
 	available_modifications = list(/decl/item_modifier/space_suit/explorer)
 	species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI)
 
@@ -57,7 +57,7 @@
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/oxygen
 	mask = /obj/item/clothing/mask/breath
-	req_access = list(access_explorer)
+	req_access = list(access_command)
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/pilot
@@ -67,7 +67,7 @@
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/oxygen
 	mask = /obj/item/clothing/mask/breath
-	req_access = list(access_pilot)
+	req_access = list(access_command)
 	islocked = 1
 
 /obj/machinery/suit_storage_unit/command
@@ -77,7 +77,7 @@
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/oxygen
 	mask = /obj/item/clothing/mask/breath
-	req_access = list(access_bridge, access_keycard_auth)
+	req_access = list(access_command, access_command)
 	islocked = 1
 
 // Vending machines & dispensers

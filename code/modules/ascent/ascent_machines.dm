@@ -54,7 +54,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 /obj/machinery/body_scanconsole/ascent
 	name = "mantid scanner console"
 	desc = "Some kind of strange alien console technology."
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	icon = 'icons/obj/ascent_sleepers.dmi'
 	construct_state = /decl/machine_construction/default/no_deconstruct
 	base_type = /obj/machinery/body_scanconsole
@@ -84,16 +84,16 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon = 'icons/obj/machines/fabricators/nanofabricator.dmi'
 	icon_state = "nanofab"
 	base_icon_state = "nanofab"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	base_type = /obj/machinery/fabricator
 	construct_state = /decl/machine_construction/default/no_deconstruct
 
 /obj/machinery/power/apc/hyper/ascent
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	base_type = /obj/machinery/power/apc
 
 /obj/machinery/hologram/holopad/longrange/ascent
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 
 /obj/effect/catwalk_plated/ascent
 	color = COLOR_GRAY40
@@ -150,7 +150,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon_state = "ascent"
 	icon_keyboard = "ascent_key"
 	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
 	base_type = /obj/machinery/computer/ship/helm
 
@@ -158,7 +158,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon_state = "ascent"
 	icon_keyboard = "ascent_key"
 	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
 	base_type = /obj/machinery/computer/ship/engines
 
@@ -166,7 +166,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon_state = "ascent"
 	icon_keyboard = "ascent_key"
 	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
 	base_type = /obj/machinery/computer/ship/navigation
 
@@ -174,7 +174,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon_state = "ascent"
 	icon_keyboard = "ascent_key"
 	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
+	req_access = list(access_command)
 	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
 	base_type = /obj/machinery/computer/ship/sensors
 
@@ -240,6 +240,6 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 /obj/machinery/power/smes/buildable/power_shuttle/ascent
 	name = "mantid battery"
 	desc = "Some kind of strange alien SMES technology."
-	icon = 'icons/obj/machines/power/mantid_smes.dmi'	
+	icon = 'icons/obj/machines/power/mantid_smes.dmi'
 	overlay_icon = 'icons/obj/machines/power/mantid_smes.dmi'
 	construct_state = /decl/machine_construction/default/no_deconstruct

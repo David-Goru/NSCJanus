@@ -88,7 +88,7 @@
 		/obj/item/weapon/stock_parts/power/apc,
 		/obj/item/weapon/stock_parts/power/battery
 		)
-	req_access = list(access_engine_equip)
+	req_access = list(access_command)
 	clicksound = "switch"
 	layer = ABOVE_WINDOW_LAYER
 	var/needs_powerdown_sound
