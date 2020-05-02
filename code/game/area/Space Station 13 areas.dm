@@ -108,7 +108,6 @@ area/space/atmosalert()
 /area/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
 /area/centcom/specops
 	name = "\improper Centcom Special Ops"
@@ -116,11 +115,9 @@ area/space/atmosalert()
 
 /area/hallway
 	name = "hallway"
-	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
 /area/medical
 	req_access = list(access_command)
-	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/medical/virology
 	name = "\improper Virology"
@@ -134,7 +131,6 @@ area/space/atmosalert()
 
 /area/security
 	req_access = list(access_command)
-	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/security/brig
 	name = "\improper Security - Brig"
@@ -152,11 +148,9 @@ area/space/atmosalert()
 	turf_initializer = /decl/turf_initializer/maintenance
 	forced_ambience = list('sound/ambience/maintambience.ogg')
 	req_access = list(access_command)
-	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
 /area/rnd
 	req_access = list(access_command)
-	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/rnd/xenobiology
 	name = "\improper Xenobiology Lab"
@@ -175,7 +169,6 @@ area/space/atmosalert()
 	name = "\improper Emergency Shuttle Centcom"
 	icon_state = "shuttle"
 	req_access = list(access_command)
-	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
 /area/shuttle/specops/centcom
 	icon_state = "shuttlered"
@@ -210,7 +203,6 @@ area/space/atmosalert()
 	requires_power = 0
 	sound_env = SMALL_ENCLOSED
 	base_turf = /turf/space
-	holomap_color = HOLOMAP_AREACOLOR_ARRIVALS
 
 /*
 * Special Areas

@@ -404,24 +404,8 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map_z_level
 	var/z = 0				// Actual z-index of the zlevel. This had better be right!
 	var/name				// Friendly name of the zlevel
-// Holomaps
-	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
-	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
-	var/holomap_legend_x = 96	// x position of the holomap legend for this z
-	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 
 // Default constructor applies itself to the parent map datum
 /datum/map_z_level/New(var/datum/map/map)
 	if(!z) return
 	map.zlevels["[z]"] = src
-	// Holomaps
-	// Auto-center the map if needed (Guess based on maxx/maxy)
-	if (holomap_offset_x < 0)
-		holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
-	if (holomap_offset_x < 0)
-		holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
-	// Assign them to the map lists
-	LIST_NUMERIC_SET(map.holomap_offset_x, z, holomap_offset_x)
-	LIST_NUMERIC_SET(map.holomap_offset_y, z, holomap_offset_y)
-	LIST_NUMERIC_SET(map.holomap_legend_x, z, holomap_legend_x)
-	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)

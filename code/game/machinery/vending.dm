@@ -911,7 +911,7 @@
 	vend_delay = 18
 	base_type = /obj/machinery/vending/medical
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access = list(access_command)
+	req_access = list(access_medical)
 	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
@@ -1174,7 +1174,7 @@
 	icon_vend = "engivend-vend"
 	vend_delay = 21
 	base_type = /obj/machinery/vending/engivend
-	req_access = list(list(access_command,access_command))
+	req_access = list(access_lifesupport)
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/device/geiger = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/module/power_control = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell = 10,/obj/item/clamp = 10)
 	contraband = list(/obj/item/weapon/cell/high = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
@@ -1187,7 +1187,7 @@
 	icon_deny = "engi-deny"
 	icon_vend = "engi-vend"
 	base_type = /obj/machinery/vending/engineering
-	req_access = list(list(access_command,access_command))
+	req_access = list(access_lifesupport)
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/oiljug = 6,
 					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/screwdriver = 12,
 					/obj/item/weapon/crowbar = 12,/obj/item/weapon/wirecutters = 12,/obj/item/device/multitool = 12,/obj/item/weapon/wrench = 12,/obj/item/device/t_scanner = 12,
@@ -1207,7 +1207,7 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	icon_vend = "robotics-vend"
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
 	base_type = /obj/machinery/vending/robotics
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/oiljug = 5,
 					/obj/item/stack/cable_coil = 4,/obj/item/device/flash/synthetic = 4,/obj/item/weapon/cell = 4,/obj/item/device/scanner/health = 2,

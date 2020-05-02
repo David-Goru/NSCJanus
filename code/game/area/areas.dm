@@ -7,6 +7,7 @@
 	var/global/global_uid = 0
 	var/uid
 	var/area_flags
+	var/holomap_color	// Color of this area on the holomap. Must be a hex color (as string) or null.
 
 /area/New()
 	icon_state = ""

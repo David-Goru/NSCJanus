@@ -146,6 +146,9 @@
 	#include "z1_admin.dmm"
 	#include "z2_transit.dmm"
 
+	#include "holomap.dm"
+	#include "station_holomap.dm"
+
 	#include "../away/empty.dmm"
 	#include "../away/ascent/ascent.dm"
 	#include "../away/mining/mining.dm"

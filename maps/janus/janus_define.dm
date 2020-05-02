@@ -67,51 +67,35 @@
 /datum/map_z_level/janus/first
 	z = Z_LEVEL_FIRST_JANUS
 	name = "Floor 1"
-	holomap_legend_x = 220
-	holomap_legend_y = 200
 
 /datum/map_z_level/janus/second
 	z = Z_LEVEL_SECOND_JANUS
 	name = "Floor 2"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*1
 
 /datum/map_z_level/janus/third
 	z = Z_LEVEL_THIRD_JANUS
 	name = "Floor 3"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*2
 
 /datum/map_z_level/janus/fourth
 	z = Z_LEVEL_FOURTH_JANUS
 	name = "Floor 4"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*3
 
 
 /datum/map_z_level/janus/fifth
 	z = Z_LEVEL_FIFTH_JANUS
 	name = "Floor 5"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*4
 
 
 /datum/map_z_level/janus/sixth
 	z = Z_LEVEL_SIXTH_JANUS
 	name = "Floor 6"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*5
 
 
 /datum/map_z_level/janus/seventh
 	z = Z_LEVEL_SEVENTH_JANUS
 	name = "Floor 7"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*6
 
 
 /datum/map_z_level/janus/eighth
 	z = Z_LEVEL_EIGHTH_JANUS
 	name = "Floor 8"
-	holomap_offset_x = 220
-	holomap_offset_y = JANUS_HOLOMAP_MARGIN_Y + JANUS_MAP_SIZE*7

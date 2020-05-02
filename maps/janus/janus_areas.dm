@@ -20,10 +20,11 @@
 	name = "Substation"
 	icon_state = "substation"
 	sound_env = SMALL_ENCLOSED
-	req_access = list(access_command) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(access_lifesupport)
 
-//Elevators
-
+/************
+* Elevators *
+************/
 
 //Turbolifts
 /area/turbolift/hangar_lift
@@ -38,49 +39,59 @@
 /area/hallway/levelminusfour/primary
 	name = "\improper Level Minus Four Hallway"
 	icon_state = "hallF"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 	//Maintenance tunnels, substations & level connections
 /area/maintenance/levelminusfour/north
 	name = "Level Minus Four North Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelminusfour/south
 	name = "Level Minus Four South Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/substation/levelminusfour
 	name = "Level Minus Four Substation"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelconnection/minusfour
 	name = "Level Minus Four Connections Shaft"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 	//Rooms
 /area/hangar/shuttlefuel
 	name = "\improper Shuttle Fuel Bay"
 	icon_state = "toxstorage"
-	req_access = list(list(access_command)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/hangar/canisterstorage
 	name = "Hangar Canister Storage"
 	icon_state = "toxstorage"
-	req_access = list(list(access_command)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/hangar/shuttlebay1
 	name = "Hangar Bay One"
 	icon_state = "mining"
-	req_access = list(list(access_command, access_command)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/hangar/shuttlebay2
 	name = "Hangar Bay Two"
 	icon_state = "mining"
-	req_access = list(list(access_command)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/hangar/shuttlebay3
 	name = "Hangar Bay Three"
 	icon_state = "mining"
-	req_access = list(list(access_command)) //FIX: ACCESS NOT CORRECT, TEMPORARY
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 //Level -3 (janus2)
 
@@ -88,108 +99,190 @@
 /area/hallway/levelminusthree/central
 	name = "\improper Level Minus Three Central Hallway"
 	icon_state = "hallF"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 /area/hallway/levelminusthree/row_a
 	name = "\improper Level Minus Three Row-A Hallway"
 	icon_state = "hallF"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 /area/hallway/levelminusthree/row_b
 	name = "\improper Level Minus Three Row-B Hallway"
 	icon_state = "hallF"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 
 	//Maintenance tunnels, substations & level connections
 /area/maintenance/levelminusthree/north
 	name = "Level Minus Three North Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelminusthree/east
 	name = "Level Minus Three East Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelminusthree/south
 	name = "Level Minus Three South Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelminusthree/central
 	name = "Level Minus Three Central Maintenance"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/levelconnection/minusthree
 	name = "Level Minus Three Connections Shaft"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 /area/maintenance/substation/levelminusthree
 	name = "Level Minus Three Substation"
 	icon_state = "fmaint"
+	holomap_color = HOLOMAP_AREACOLOR_MAINTENANCE
 
 	//Rooms
 /area/lifesupport/lobby
 	name = "Life Support - Lobby"
 	icon_state = "engineering_foyer"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 /area/lifesupport/main_hallway
 	name = "\improper Life Support - Hallway"
 	icon_state = "engineering_foyer"
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAY
 
 /area/lifesupport/monitoring_room
 	name = "\improper Life Support - Monitoring Room"
 	icon_state = "engine_monitoring"
 	sound_env = SMALL_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/engine_monitoring
 	name = "\improper Life Support - Engine Monitoring"
 	icon_state = "engine_monitoring"
 	sound_env = SMALL_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/smes_room
 	name = "\improper Life Support - Power Management"
 	icon_state = "engineering_foyer"
 	sound_env = SMALL_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/equipment_room
 	name = "\improper Life Support - Equipment Room"
 	icon_state = "engineering_locker"
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/hard_storage
 	name = "\improper Life Support - Hard Storage"
 	icon_state = "engineering_locker"
 	sound_env = LARGE_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/engine_room
 	name = "\improper Life Support - Engine Bay"
 	icon_state = "engine"
 	sound_env = LARGE_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/atmospherics
 	name = "\improper Life Support - Atmospherics"
 	icon_state = "atmos"
 	sound_env = LARGE_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
 /area/lifesupport/grav_gen
 	name = "\improper Life Support - Gravity Generator"
 	icon_state = "atmos"
 	sound_env = SMALL_ENCLOSED
-	req_access = list(access_command)
+	req_access = list(access_lifesupport)
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
+
+/area/lifesupport/waste_management
+    name = "\improper Life Support - Waste Management"
+    icon_state = "engineering_locker"
+    sound_env = SMALL_ENCLOSED
+    req_access = list(access_ntgeneral)
+    holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
+
+/area/lifesupport/cleaning_supplies
+    name = "\improper Life Support - Cleaning Closet"
+    icon_state = "engineering_locker"
+    sound_env = SMALL_ENCLOSED
+    req_access = list(access_ntgeneral)
+    holomap_color = HOLOMAP_AREACOLOR_CLEANING
 
 /area/security/checkpoint/levelminusthree
 	name = "\improper Security - Level Minus Three Checkpoint"
 	icon_state = "security"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/mining/mineral_processing
 	name = "Mining Processing"
 	icon_state = "mining"
-	req_access = list(list(access_command))
+	req_access = list(list(access_lifesupport))
+	holomap_color = HOLOMAP_AREACOLOR_LIFESUPPORT
 
+// Elevator areas
+/area/turbolift/janus_eighth
+	name = "lift (eighth floor)"
+	lift_floor_label = "Offices"
+	lift_floor_name = "Offices"
+	lift_announce_str = "Arriving at offices."
+/area/turbolift/janus_seventh
+	name = "lift (seventh floor)"
+	lift_floor_label = "Offices"
+	lift_floor_name = "Offices"
+	lift_announce_str = "Arriving at offices."
 
+/area/turbolift/janus_sixth
+	name = "lift (sixth floor)"
+	lift_floor_label = "Residential"
+	lift_floor_name = "Residential"
+	lift_announce_str = "Arriving at residential."
+
+/area/turbolift/janus_fifth
+	name = "lift (fifth floor)"
+	lift_floor_label = "Maindeck"
+	lift_floor_name = "Maindeck"
+	lift_announce_str = "Arriving at maindeck."
+
+/area/turbolift/janus_fourth
+	name = "lift (fourth floor)"
+	lift_floor_label = "Commercial"
+	lift_floor_name = "Commercial"
+	lift_announce_str = "Arriving at commercial."
+
+/area/turbolift/janus_third
+	name = "lift (third floor)"
+	lift_floor_label = "Industrial"
+	lift_floor_name = "Industrial"
+	lift_announce_str = "Arriving at industrial."
+
+/area/turbolift/janus_second
+	name = "lift (second floor)"
+	lift_floor_label = "Life support"
+	lift_floor_name = "Life support"
+	lift_announce_str = "Arriving at life support."
+
+/area/turbolift/janus_first
+	name = "lift (first floor)"
+	lift_floor_label = "Hangar"
+	lift_floor_name = "Hangar"
+	lift_announce_str = "Arriving at hangar floor."
+	base_turf = /turf/simulated/floor
 
 
 
@@ -746,50 +839,6 @@
 	icon_state = "shuttlegrn"
 	req_access = list(access_command)
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED
-
-// Elevator areas.
-/area/turbolift/janus_seventh
-	name = "lift (seventh floor)"
-	lift_floor_label = "Offices"
-	lift_floor_name = "Offices"
-	lift_announce_str = "Arriving at offices."
-
-/area/turbolift/janus_sixth
-	name = "lift (sixth floor)"
-	lift_floor_label = "Residential"
-	lift_floor_name = "Residential"
-	lift_announce_str = "Arriving at residential."
-
-/area/turbolift/janus_fifth
-	name = "lift (fifth floor)"
-	lift_floor_label = "Maindeck"
-	lift_floor_name = "Maindeck"
-	lift_announce_str = "Arriving at maindeck."
-
-/area/turbolift/janus_fourth
-	name = "lift (fourth floor)"
-	lift_floor_label = "Commercial"
-	lift_floor_name = "Commercial"
-	lift_announce_str = "Arriving at commercial."
-
-/area/turbolift/janus_third
-	name = "lift (third floor)"
-	lift_floor_label = "Industrial"
-	lift_floor_name = "Industrial"
-	lift_announce_str = "Arriving at industrial."
-
-/area/turbolift/janus_second
-	name = "lift (second floor)"
-	lift_floor_label = "Life support"
-	lift_floor_name = "Life support"
-	lift_announce_str = "Arriving at life support."
-
-/area/turbolift/janus_first
-	name = "lift (first floor)"
-	lift_floor_label = "Hangar"
-	lift_floor_name = "Hangar"
-	lift_announce_str = "Arriving at hangar floor."
-	base_turf = /turf/simulated/floor
 
 // Command
 /area/command/conference

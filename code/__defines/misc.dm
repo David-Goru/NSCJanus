@@ -6,6 +6,9 @@
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 #define RUIN_MAP_EDGE_PAD 15
 
+// Holomap
+#define HIDE_FROM_HOLOMAP 4 // if we shouldn't be drawn on station holomaps
+
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING    20
 #define INVISIBILITY_LEVEL_ONE   35
@@ -222,6 +225,9 @@
 
 #define SUPPLY_SECURITY_ELEVATED 1
 #define SUPPLY_SECURITY_HIGH 2
+
+// Holomap
+#define Z_ALL_TURFS(Z) block(locate(1, 1, Z), locate(world.maxx, world.maxy, Z))
 
 // secure gun authorization settings
 #define UNAUTHORIZED      0
